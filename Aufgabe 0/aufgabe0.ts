@@ -1,6 +1,5 @@
 var aufgabe0;
 (function (aufgabe0) {
-    var i = "";
     function main() {
         var i = prompt("Name eingeben");
         var node = document.getElementById("content");
