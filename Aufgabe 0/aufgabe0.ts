@@ -1,11 +1,11 @@
 var aufgabe0;
 (function (aufgabe0) {
-    var i = "";
     function main() {
         var i = prompt("Name eingeben");
-        var node = document.getElementById("content");
-        node.innerHTML += "Willkommen auf Meiner Seite ";
-        node.innerHTML += i;
+        var a;
+        a = "Willkommen auf Meiner Seite ";
+        a += i;
+        document.getElementbyId("content").innerHTML += a;
         console.log("Willkommen auf Meiner Seite", i, );
     }
     document.addEventListener('DOMContentLoaded', main);
