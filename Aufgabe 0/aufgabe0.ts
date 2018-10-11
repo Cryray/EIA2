@@ -3,6 +3,7 @@ var aufgabe0: string;
     function main() {
         var i: string = prompt("Name eingeben");
         var a: string;
+    var t;
         a = "Willkommen auf Meiner Seite ";
         a += i;
         document.getElementbyId("content").innerHTML += a;
