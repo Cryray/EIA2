@@ -1,8 +1,8 @@
-var aufgabe0;
+var aufgabe0: string;
 (function (aufgabe0) {
     function main() {
-        var i = prompt("Name eingeben");
-        var a;
+        var i: string = prompt("Name eingeben");
+        var a: string;
         a = "Willkommen auf Meiner Seite ";
         a += i;
         document.getElementbyId("content").innerHTML += a;
