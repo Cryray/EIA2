@@ -26,3 +26,24 @@ let specialcards: any[]=[greenspecial,yellowspecial,redspecial,bluespecial];
 
 
 let deck: any[] = [blackcards,colorcards,specialcards];
+
+let node = document.getElementById ("content")
+let childNodeHtml:string;
+let i:number= 0;
+while(i<deck.length){
+        childNodeHtml="<div"
+        childNodeHtml="id=deck"
+        childNodeHtml=">"
+        childNodeHtml="<div"
+        childNodeHtml="id=card1"
+        childNodeHtml=">"
+        childNodeHtml="<div"
+        childNodeHtml="id=card2"
+        childNodeHtml=">"
+        childNodeHtml="<div"
+        childNodeHtml="id=card3"
+        childNodeHtml=">"
+        childNodeHtml="<div"
+        childNodeHtml="id=karte4"
+        childNodeHtml=">"
+}

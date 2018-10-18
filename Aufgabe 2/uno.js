@@ -15,4 +15,24 @@ var blackcards = [farbwechsel, farbwechsel, farbwechsel, farbwechsel, plusvier, 
 var colorcards = [green, yellow, blue, red];
 var specialcards = [greenspecial, yellowspecial, redspecial, bluespecial];
 var deck = [blackcards, colorcards, specialcards];
+var node = document.getElementById("content");
+var childNodeHtml;
+var i = 0;
+while (i < deck.length) {
+    childNodeHtml = "<div";
+    childNodeHtml = "id=deck";
+    childNodeHtml = ">";
+    childNodeHtml = "<div";
+    childNodeHtml = "id=card1";
+    childNodeHtml = ">";
+    childNodeHtml = "<div";
+    childNodeHtml = "id=card2";
+    childNodeHtml = ">";
+    childNodeHtml = "<div";
+    childNodeHtml = "id=card3";
+    childNodeHtml = ">";
+    childNodeHtml = "<div";
+    childNodeHtml = "id=karte4";
+    childNodeHtml = ">";
+}
 //# sourceMappingURL=uno.js.map
