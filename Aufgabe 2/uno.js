@@ -1,5 +1,5 @@
-var uno;
-(function (uno) {
+var unocards;
+(function (unocards) {
     var c0 = {
         name: "0",
         rot: 1,
@@ -125,7 +125,7 @@ var uno;
         var i = prompt("Wie viele Karten pro Spieler?");
         z = Number(i);
         for (var d = 0; d < z; d++) {
-            var l = random(15); //l = Zufallswert von 0-14 (alle Karten)
+            var l = random(15);
             if (l == 13 && s1 > 0) {
                 c = "#000000";
                 s1--;
@@ -148,7 +148,7 @@ var uno;
                     continue;
                 }
                 else {
-                    var r = random(4); //random Zahl von 0-3 jeweils eine Farbe
+                    var r = random(4);
                     switch (r) {
                         case 0:
                             c = "#ff0000"; //rot
@@ -232,5 +232,5 @@ var uno;
         Ablage();
     }
     document.addEventListener('DOMContentLoaded', main);
-})(uno || (uno = {}));
+})(unocards || (unocards = {}));
 //# sourceMappingURL=uno.js.map

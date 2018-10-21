@@ -1,4 +1,4 @@
-namespace uno { 
+namespace unocards { 
     interface Cards {
         name: string;
         rot: number;
@@ -159,74 +159,74 @@ namespace uno {
         let z: number;
         let i: string = prompt("Wie viele Karten pro Spieler?");
         z = Number(i);
-        for (let d: number = 0; d < z; d++) { //d = aktuelle Karte die gegeben wird
-            let l: number = random(15); //l = Zufallswert von 0-14 (alle Karten)
-            if (l == 13 && s1 > 0) { //Wenn l = 13 & s1 > 0 dann generiere schwarze +4
+        for (let d: number = 0; d < z; d++) { 
+            let l: number = random(15); 
+            if (l == 13 && s1 > 0) { 
                 c = "#000000";
                 s1--;
                 placeDiv(c, "+4", d);
                 continue;
 
             }
-            else if (l == 13 && s1 <= 0) { //Wenn l = 13 & s1 <= 0 dann continue (d--) da sonst Karte übersprungen
+            else if (l == 13 && s1 <= 0) { 
                 d--;
                 continue;
             }
             else {
-                if (l == 14 && s2 > 0) { //Wenn l = 14 & s2 > 0 dann generiere schwarze Farbwahl
+                if (l == 14 && s2 > 0) { 
                     c = "#000000";
                     s2--;
                     placeDiv(c, "F", d);
                     continue;
                 }
-                else if (l == 14 && s2 <= 0) { //Wenn l = 14 & s2 <= 0 dann continue (d-- da sonst Karte übersprungen)
+                else if (l == 14 && s2 <= 0) { 
                     d--;
                     continue;
                 }
-                else { //Wenn l =/= 13 || 14 dann vergebe Farbe an Kartenwert
-                    let r: number = random(4); //random Zahl von 0-3 jeweils eine Farbe
+                else { 
+                    let r: number = random(4); 
                     switch (r) {
-                        case 0: //Wenn r = 0 dann rote Farbe
+                        case 0: 
                             c = "#ff0000"; //rot
                             if (AlleKarten[l].rot > 0) {
                                 placeDiv(c, AlleKarten[l].name, d);
                                 AlleKarten[l].rot--;
                                 continue;
                             }
-                            else { //Wenn Kombination aus Wert und Farbe <= 0 dann continue (d-- da sonst Karte übersprungen)
+                            else { 
                                 d--;
                                 continue;
                             }
-                        case 1: //Wenn r = 1 dann grüne Farbe
+                        case 1: 
                             c = "#00ff00"; //grün
                             if (AlleKarten[l].gruen > 0) {
                                 placeDiv(c, AlleKarten[l].name, d);
                                 AlleKarten[l].gruen--;
                                 continue;
                             }
-                            else { //Wenn Kombination aus Wert und Farbe <= 0 dann continue (d-- da sonst Karte übersprungen)
+                            else { 
                                 d--;
                                 continue;
                             }
-                        case 2: //Wenn r = 2 dann blaue Farbe
+                        case 2:
                             c = "#0000ff"; //blau
                             if (AlleKarten[l].blau > 0) {
                                 placeDiv(c, AlleKarten[l].name, d);
                                 AlleKarten[l].blau--;
                                 continue;
                             }
-                            else { //Wenn Kombination aus Wert und Farbe <= 0 dann continue (d-- da sonst Karte übersprungen)
+                            else { 
                                 d--;
                                 continue;
                             }
-                        case 3: //Wenn r = 3 dann gelbe Farbe
+                        case 3: 
                             c = "#ffff00"; //gelb
                             if (AlleKarten[l].gelb > 0) {
                                 placeDiv(c, AlleKarten[l].name, d);
                                 AlleKarten[l].gelb--;
                                 continue;
                             }
-                            else { //Wenn Kombination aus Wert und Farbe <= 0 dann continue (d-- da sonst Karte übersprungen)
+                            else { 
                                 d--;
                                 continue;
                             }
