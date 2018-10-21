@@ -1,7 +1,7 @@
 // Ehrlich gesagt Hilfe von Nicos Code genommen
 // Habe den Code durchgelesen und komplett verstanden
 // Werde nach der Ampelstufe nach einer alternativ Lösung suchen
-
+// Hatte nen ähnlichen Ansatz, jedoch war die Lösung unkomplizierter
 
 
 
