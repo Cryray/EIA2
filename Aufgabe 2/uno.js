@@ -1,4 +1,4 @@
-var karten = []; //Deck
+var karteen = [];
 function Karte(pIndex, pColor, pWert) {
     this.index = pIndex;
     this.color = pColor;
@@ -21,7 +21,7 @@ function StapelErstellen() {
                 }
                 else {
                     var tmp = Karte(index, farbe, werte);
-                    karten.push(tmp);
+                    karteen.push(tmp);
                     index++;
                 }
             }
@@ -31,30 +31,30 @@ function StapelErstellen() {
     for (var k = 0; k < 8; k++) {
         var Farbwechsel;
         var tmp = Karte(index, "schwarz", Farbwechsel);
-        karten.push(tmp);
+        karteen.push(tmp);
         index++;
         var plusvier;
         var tmp = Karte(index, "schwarz", plusvier);
-        karten.push(tmp);
+        karteen.push(tmp);
         index++;
     }
 }
-/*function KarteZiehen() {
-    var random = Math.floor(Math.random() * karten.length);
+function KarteZiehen() {
+    var random = Math.floor(Math.random() * karteen.length);
     // console.log(tmp);
-    for(var l=0; l < karten.length; l++) {
-        if(karten[l].index == random) {
-            var gezogeneKarte = karten.splice(l,1)[0];
+    for (var l = 0; l < karteen.length; l++) {
+        if (karteen[l].index == random) {
+            var gezogeneKarte = karteen.splice(l, 1)[0];
             console.log(gezogeneKarte.color + gezogeneKarte.wert);
         }
     }
 }
-
 StapelErstellen();
-
-//Für 7 Mal Karten ziehen Beispiel-+
-for(var i=0; i<7; i++) {
-    KarteZiehen();
+function question() {
+    var numCards = parseInt(prompt("Kartenanzahl festlegen"));
+    for (var i = 0; i < numCards; i++) {
+        KarteZiehen();
+    }
 }
-*/ 
+document.addEventListener("DOMContentLoaded", question);
 //# sourceMappingURL=uno.js.map
