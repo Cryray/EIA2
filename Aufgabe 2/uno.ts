@@ -1,72 +1,49 @@
+namespace uno {
 
-interface karte {
-    color:string;
-    wert:number;
-    index:number;
-}
-var karteen:any = [];
-function Karte(pIndex:number , pColor:string, pWert:string[]) { //Karten-Objekt
-    this.index = pIndex;
-    this.color = pColor;
-    this.wert = pWert;
-}
+    interface card {
+        color: string;
+        value: string;
+    }
 
-function StapelErstellen() {
-    var farben = ["rot", "grün", "gelb", "blau"];
-    var karte: string;
-    var index = 0;
+    document.addEventListener("DOMContentLoaded", init);
 
-    //reguläre Karten
-    while(farben.length != 0) {
-        var werte:string[] = ["0", "1", "2", "3", "4","5", "6", "7", "8", "9", "Richtungswechsel", "Aussetzen"];
-        var farbe = farben.pop();
-        
-        while(werte.length != 0) {
-            var werte2:string = werte.pop();
-            var j:number; //da jede Karte 2 mal vorhanden
-            for(var j=0; j < 2; j++) {
-                if(j===1 && werte2 == "0") { // außer der "0" ;)
-                    break;
-                } else {
-                    var tmp = Karte (index,farbe, werte);
-                    karteen.push(tmp);
-                    index++;
-                }
+    let cards: card[] = [{ color: "#ff0000", value: "0" }, { color: "#ff0000", value: "1" }, { color: "#ff0000", value: "1" }, { color: "#ff0000", value: "2" }, { color: "#ff0000", value: "3" }, { color: "#ff0000", value: "3" }, { color: "#ff0000", value: "4" }, { color: "#ff0000", value: "4" }, { color: "#ff0000", value: "5" }, { color: "#ff0000", value: "5" }, { color: "#ff0000", value: "6" }, { color: "#ff0000", value: "6" }, { color: "#ff0000", value: "7" }, { color: "#ff0000", value: "7" }, { color: "#ff0000", value: "8" }, { color: "#ff0000", value: "8" }, { color: "#ff0000", value: "9" }, { color: "#ff0000", value: "9" }, { color: "#ff0000", value: "+2" }, { color: "#ff0000", value: "+2" }, { color: "#ff0000", value: "aussetzen" }, { color: "#ff0000", value: "aussetzen" },
+        { color: "#00ff00", value: "0" }, { color: "#00ff00", value: "1" }, { color: "#00ff00", value: "1" }, { color: "#00ff00", value: "2" }, { color: "#00ff00", value: "2" }, { color: "#00ff00", value: "3" }, { color: "#00ff00", value: "3" }, { color: "#00ff00", value: "4" }, { color: "#00ff00", value: "4" }, { color: "#00ff00", value: "5" }, { color: "#00ff00", value: "5" }, { color: "#00ff00", value: "6" }, { color: "#00ff00", value: "6" }, { color: "#00ff00", value: "7" }, { color: "#00ff00", value: "7" }, { color: "#00ff00", value: "8" }, { color: "#00ff00", value: "8" }, { color: "#00ff00", value: "9" }, { color: "#00ff00", value: "9" }, { color: "#00ff00", value: "+2" }, { color: "#00ff00", value: "+2" }, { color: "#00ff00", value: "aussetzen" }, { color: "#00ff00", value: "aussetzen" },
+        { color: "#0000ff", value: "0" }, { color: "#0000ff", value: "1" }, { color: "#0000ff", value: "1" }, { color: "#0000ff", value: "2" }, { color: "#0000ff", value: "2" }, { color: "#0000ff", value: "3" }, { color: "#0000ff", value: "3" }, { color: "#0000ff", value: "4" }, { color: "#0000ff", value: "4" }, { color: "#0000ff", value: "5" }, { color: "#0000ff", value: "5" }, { color: "#0000ff", value: "6" }, { color: "#0000ff", value: "6" }, { color: "#0000ff", value: "7" }, { color: "#0000ff", value: "7" }, { color: "#0000ff", value: "8" }, { color: "#0000ff", value: "8" }, { color: "#0000ff", value: "9" }, { color: "#0000ff", value: "9" }, { color: "#0000ff", value: "+2" }, { color: "#0000ff", value: "+2" }, { color: "#0000ff", value: "aussetzen" }, { color: "#0000ff", value: "aussetzen" },
+        { color: "#ffff00", value: "0" }, { color: "#ffff00", value: "1" }, { color: "#ffff00", value: "1" }, { color: "#ffff00", value: "2" }, { color: "#ffff00", value: "2" }, { color: "#ffff00", value: "3" }, { color: "#ffff00", value: "3" }, { color: "#ffff00", value: "4" }, { color: "#ffff00", value: "4" }, { color: "#ffff00", value: "5" }, { color: "#ffff00", value: "5" }, { color: "#ffff00", value: "6" }, { color: "#ffff00", value: "6" }, { color: "#ffff00", value: "7" }, { color: "#ffff00", value: "7" }, { color: "#ffff00", value: "8" }, { color: "#ffff00", value: "8" }, { color: "#ffff00", value: "9" }, { color: "#ffff00", value: "9" }, { color: "#ffff00", value: "+2" }, { color: "#ffff00", value: "+2" }, { color: "#ffff00", value: "aussetzen" }, { color: "#ffff00", value: "aussetzen" },
+        { color: "#000000", value: "+4" }, { color: "#000000", value: "+4" }, { color: "#000000", value: "+4" }, { color: "#000000", value: "+4" }, { color: "#000000", value: "farbwechsel" }, { color: "#000000", value: "farbwechsel" }, { color: "#000000", value: "farbwechsel" }, { color: "#000000", value: "farbwechsel" }];
+
+    let hand: card[] = [];
+
+    function init(): void {
+        let numOfCards: string = prompt("Kartenanzahl eingeben");
+        let numCards: number = +numOfCards;
+
+        drawCards(numCards);
+    }
+
+    function drawCards(_numCards: number): void {
+        for (let x: number = 0; x < _numCards; x++) {
+            let random: number = Math.floor(Math.random() * cards.length);
+            let getcard: card = cards.splice(random, 1)[0];
+            hand.push(getcard);
+            displayHand(hand);
+        }
+    }
+
+    function displayHand(hand: card[]): void {
+        let handdiv: HTMLElement = document.getElementById("hand");
+        let span: HTMLSpanElement = document.createElement("span");
+        for (let o: number = 0; o < hand.length; o++) {
+            span.innerText = hand[o].value;
+            span.style.backgroundColor = hand[o].color;
+            span.style.color ="black";
+
+            if (hand[o].color == "#000000"||hand[o].color == "#0000ff") {
+                span.style.color = "white";
             }
-        }
-    }
-    
-    //Sonderkarten
-    for(var k=0; k < 8; k++) {
-        var Farbwechsel: string[];
-        var tmp = Karte(index, "schwarz", Farbwechsel);
-        karteen.push(tmp);
-        index++;
-        
-        var plusvier: string[];
-        var tmp = Karte(index, "schwarz", plusvier);
-        karteen.push(tmp);
-        index++;
-    }
-}
 
-function KarteZiehen() {
-    var random = Math.floor(Math.random() * karteen.length);
-    // console.log(tmp);
-    for(var l=0; l < karteen.length; l++) {
-        if(karteen[l].index == random) {
-            var gezogeneKarte: karte = karteen.splice(l,1)[0];
-            console.log(gezogeneKarte.color + gezogeneKarte.wert);
+            handdiv.appendChild(span);
         }
     }
 }
-
-StapelErstellen();
-function question() {
-    let numCards = parseInt(prompt("Kartenanzahl festlegen"));
-   
-for (let i:number=0; i<numCards; i++) {
-    KarteZiehen();
-}
-}
-document.addEventListener("DOMContentLoaded", question);

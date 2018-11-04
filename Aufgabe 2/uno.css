@@ -1,0 +1,32 @@
+@charset "ISO-8859-1";
+
+#Ziehstapel {top: 50px;
+left:50px;
+border: thin solid black;
+background-color:orange;
+width:150px;
+height: 200px;
+position:absolute;}
+
+#Ablage {top:50px;
+right:50px;
+border:thin solid black;
+background-color: purple;
+width:150px;
+height: 200px;
+position:absolute;}
+
+#hand {bottom:10px;
+height:250px;
+width:100%;
+border: solid black;
+position:absolute;
+background-color:CadetBlue;}
+
+span {height:200px;
+width:150px;
+border:solid black;
+margin:10px;
+display: inline-block;
+position:relative;
+text-align:center;}
