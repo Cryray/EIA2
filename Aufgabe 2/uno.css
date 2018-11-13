@@ -1,6 +1,6 @@
 @charset "ISO-8859-1";
 
-#Ziehstapel {top: 50px;
+#drawpile {top: 50px;
 left:50px;
 border: thin solid black;
 background-color:orange;
@@ -8,7 +8,7 @@ width:150px;
 height: 200px;
 position:absolute;}
 
-#Ablage {top:50px;
+#discardpile {top:50px;
 right:50px;
 border:thin solid black;
 background-color: purple;
