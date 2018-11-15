@@ -7,7 +7,6 @@ namespace Uno {
 
     document.addEventListener( "DOMContentLoaded", init );
     
-    
     let hand: Card[] = [];
     let pile: Card[] = [];
     let cards: Card[] = [{ color: "#ff0000", value: "0" }, { color: "#ff0000", value: "1" }, { color: "#ff0000", value: "1" }, { color: "#ff0000", value: "2" }, { color: "#ff0000", value: "3" }, { color: "#ff0000", value: "3" }, { color: "#ff0000", value: "4" }, { color: "#ff0000", value: "4" }, { color: "#ff0000", value: "5" }, { color: "#ff0000", value: "5" }, { color: "#ff0000", value: "6" }, { color: "#ff0000", value: "6" }, { color: "#ff0000", value: "7" }, { color: "#ff0000", value: "7" }, { color: "#ff0000", value: "8" }, { color: "#ff0000", value: "8" }, { color: "#ff0000", value: "9" }, { color: "#ff0000", value: "9" }, { color: "#ff0000", value: "+2" }, { color: "#ff0000", value: "+2" }, { color: "#ff0000", value: "aussetzen" }, { color: "#ff0000", value: "aussetzen" },
@@ -19,7 +18,8 @@ namespace Uno {
     function init(): void {
         let numOfCards: string = prompt( "Kartenanzahl eingeben" );
         let numCards: number = +numOfCards;
-
+    handleClickOnButton();
+    
         drawCards( numCards );
         installEventListeners();
     }
@@ -29,11 +29,13 @@ namespace Uno {
     }
     
     function handleClickOnButton(): void {
-        document.getElementById("button").addEventListener("click", sortCards);
+        let clickButton = document.getElementById("button");
+        clickButton.addEventListener("click", sortCards);
     }
     function sortCards(_event: Event): void {
+        console.log("Hi");//Test
         hand.sort(compareCards);
-        displayHand;
+        displayHand(hand);
     }
 
     function compareCards(card1: Card, card2: Card): number {

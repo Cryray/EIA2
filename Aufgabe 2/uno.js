@@ -11,6 +11,7 @@ var Uno;
     function init() {
         var numOfCards = prompt("Kartenanzahl eingeben");
         var numCards = +numOfCards;
+        handleClickOnButton();
         drawCards(numCards);
         installEventListeners();
     }
@@ -19,11 +20,13 @@ var Uno;
         document.getElementById("drawpile").addEventListener("click", drawOneCard);
     }
     function handleClickOnButton() {
-        document.getElementById("button").addEventListener("click", sortCards);
+        var clickButton = document.getElementById("button");
+        clickButton.addEventListener("click", sortCards);
     }
     function sortCards(_event) {
+        console.log("Hi"); //Test
         hand.sort(compareCards);
-        displayHand;
+        displayHand(hand);
     }
     function compareCards(card1, card2) {
         var x = card1.color.toLowerCase();
