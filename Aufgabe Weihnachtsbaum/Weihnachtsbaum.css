@@ -5,7 +5,11 @@ fieldset {
 
 #summary{
 	border: solid black;
-	widht: 40%;
-	height: 400px;
+	width: 40%;
+	heiht: 400px;
 	right:-5px;
+	float:right;
+	top:-0px;
+	position:absolute;
+	
 }
