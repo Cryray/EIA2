@@ -1,285 +1,117 @@
-namespace Weihnachtsbaumkonfigurator {
-     interface Product {
-        name: string;
-        price: number;
-        color: string;
-        size: string;
-    }
-
-     let ball: Product[] = [{ name: "Small red ball", price: 3, color: "red", size: "small" }, { name: "Big red ball", price: 3, color: "red", size: "big" }, { name: "Small silver ball", price: 3, color: "silver", size: "small" }, { name: "Big silver ball", price: 3, color: "silver", size: "big" }, { name: "Small golden ball", price: 3, color: "gold", size: "small" }, { name: "Big golden ball", price: 3, color: "gold", size: "big" }, { name: "Small blue ball", price: 3, color: "blue", size: "small" }];
-     let tree: Product[] = [{ name: "Small fir tree", price: 10, color: "green", size: "small" }, { name: "Medium fir tree", price: 15, color: "green", size: "medium" }, { name: "Big fir tree", price: 20, color: "green", size: "big" }, { name: "Small Caucasian fir", price: 12, color: "green", size: "small" }, { name: "Medium Caucasian fir", price: 17, color: "green", size: "medium" }, { name: "Big Caucasian fir", price: 12, color: "green", size: "big" }, { name: "Norway spruce", price: 14, color: "green", size: "medium" }, { name: "Bluespruce", price: 12, color: "green", size: "medium" }, { name: "Pine", price: 18, color: "green", size: "medium" }];
-     let tinsel: Product[] = [{ name: "Green tinsel", price: 3.50, color: "green", size: "normal" }, { name: "Blue tinsel", price: 3.50, color: "blue", size: "normal" }, { name: "Gold tinsel", price: 3.50, color: "gold", size: "normal" }, { name: "Silver tinsel", price: 3.50, color: "silver", size: "normal" }, { name: "Red tinsel", price: 3.50, color: "red", size: "normal" }];
-     let candle: Product[] = [{ name: "Small red candle", price: 1, color: "red", size: "small" }, { name: "Medium red candle", price: 1.50, color: "red", size: "medium" }, { name: "Big red candle", price: 2, color: "red", size: "big" }, { name: "small white candle", price: 1, color: "white", size: "small" }, { name: "medium white candle", price: 1.50, color: "white", size: "medium" }, { name: "Big white candle", price: 2, color: "white", size: "big" }];
-     let shipment: Product[] = [{ name: "DHL", price: 4.99, color: "", size: "" }, { name: "Hermes", price: 3.99, color: "", size: "" }, { name: "UPS", price: 6.99, color: "", size: "" }];
-
-
-    document.addEventListener("DOMContentLoaded", init);
-    document.addEventListener("DOMContentLoaded", init2);
-    document.addEventListener("DOMContentLoaded", init3);
-    document.addEventListener("DOMContentLoaded", init4);
-    function init(): void {
-        let fieldsets: NodeListOf<HTMLFieldSetElement> = document.getElementsByTagName("fieldset");
-        for (let i: number = 0; i < 1; i++) {
-            let fieldset: HTMLFieldSetElement = fieldsets[i];
-            fieldset.addEventListener("change", handleChange);
-            //document.getElementById("summary").addEventListener("click", summary);
+    namespace Wbk {
         
-            //BAUMART
-            let node: HTMLElement = document.getElementById("Baumart");
-            let childNodeHtml: string;
-            let art: Product[] = tree;
+        interface HeteroPredef {
+            name: string;
+            price: number;
+            
+        }
 
-            childNodeHtml = "";
-            childNodeHtml += "<select name=Select id=select>";
-            childNodeHtml += "<optgroup label=Baumarten></optgroup> ";
-            childNodeHtml += "<datalist id=options>";
+     
+        interface HomoVar {
+            [key: string]: HeteroPredef[];
+        }
 
-            for (let i: number = 0; i < tree.length; i++) {
-                childNodeHtml += "<option value=";
-                childNodeHtml += "lam" + i;
-                childNodeHtml += ">";
-                childNodeHtml += tree[i].name;
-                childNodeHtml += "</option>";
+        
+            export let data: HomoVar = {
+                "tree": [
+                    { name: "fir", price: 15 },
+                    { name: "Caucasian fir", price: 17 },
+                    { name: "Norway spruce", price: 18 },
+                    { name: "Bluespruce", price: 16 },
+                    { name: "Pine", price: 16 }
+                ],
+                "ball": [
+                    { name: "red", price: 1 },
+                    { name: "green", price: 1.50 },
+                    { name: "blue", price: 2 },
+                    { name: "gold", price: 1.50 },
+                    { name: "silver", price: 1 }
+                ],
+                 "tinsel": [
+                    { name: "red", price: 3 },
+                    { name: "green", price: 3.50 },
+                    { name: "blue", price: 3 },
+                    { name: "gold", price: 3.50 },
+                    { name: "silver", price: 3 }
+                ],
+                  "candle": [
+                    { name: "red", price: 2 },
+                    { name: "white", price: 2.50 },
+                    { name: "honey", price: 2 }
+                   
+                ],
+                   "shipment": [
+                    { name: "DHL", price: 5.99 },
+                    { name: "Hermes", price: 6.50 },
+                    { name: "UPS", price: 6 }
+                   
+                ]
+            };
+    
+
+   
+        document.addEventListener("DOMContentLoaded", init);
+
+
+    function init(): void {
+        createFormat(data);
+        }
+
+
+
+
+
+       /* function init(): void {
+            let fieldsets: NodeListOf<HTMLFieldSetElement> = document.getElementsByTagName("fieldset");
+            for (let i: number = 0; i < 1; i++) {
+                let fieldset: HTMLFieldSetElement = fieldsets[i];
+                createFormat(fieldset, data);
+                // fieldset.addEventListener("change", handleChange);
             }
-            childNodeHtml += "</select>";
-         
-            childNodeHtml += "</hr>";
-
-            node.innerHTML += childNodeHtml;
+        }*/
+        function createFormat( _homoVar: HomoVar): void {
+            for (let key in _homoVar) {
+                let value: HeteroPredef[] = _homoVar[key];
+                let fieldsets: NodeListOf<HTMLFieldSetElement> = document.getElementsByTagName("fieldset");
+               for (let b: number= 0; b < 5; b++ ) {
+                let i: number=0 + b; i < value.length;
+                let fieldset: HTMLFieldSetElement = fieldsets[i];
+                    for (let a: number = 0; a < value.length; a++) {
+                        let input: HTMLInputElement = document.createElement("input");
+                        fieldset.appendChild(input);
+                        input.type = "checkbox";
+                        input.name = "type";
+                        input.value = value[a].name;
+                        input.id = value[a].name;
+                        let label: HTMLLabelElement = document.createElement("label");
+                        fieldset.appendChild(label);
+                        chooseNumber(a, fieldset, value);
+                        label.setAttribute("chosenType", value[a].name);
+                        label.innerHTML = value[a].name + " " + value[a].price + "Euro ";
+                    }
+                }
+            }
     }
-//LAMETTA    
-        let node: HTMLElement = document.getElementById("Lametta");
-        let childNodeHtml: string;
-        let art: Product[] = tinsel;
-
-        childNodeHtml = "";
-        childNodeHtml += "<select name=Select id=select>";
-        childNodeHtml += "<optgroup label=Lametta></optgroup> ";
-        childNodeHtml += "<datalist id=options>";
-
-        for (let i: number = 0; i < tinsel.length; i++) {
-            childNodeHtml += "<option value=";
-            childNodeHtml += "lam" + i;
-            childNodeHtml += ">";
-            childNodeHtml += tinsel[i].name;
-            childNodeHtml += "</option>";
-        }
-        childNodeHtml += "</select>";
-        childNodeHtml += "<select>";
-        childNodeHtml += "<h3>Anzahl:</h3>";
-        childNodeHtml += "<option value=clear selected></option>";
-        for (let i: number = 0; i < 20; i += 5) {
-            childNodeHtml += "<option value=lamettanum";
-            childNodeHtml += i;
-            childNodeHtml += " id=lamettanum";
-            childNodeHtml += i;
-            childNodeHtml += ">";
-            childNodeHtml += i;
-            childNodeHtml += "</option>";
-        }
-        childNodeHtml += "</select>";
-        childNodeHtml += "</hr>";
-
-        node.innerHTML += childNodeHtml;
-    }
-//KERZEN
-    function init2(): void {
-        let fieldsets: NodeListOf<HTMLFieldSetElement> = document.getElementsByTagName("fieldset");
-        for (let i: number = 0; i < 1; i++) {
-            let fieldset: HTMLFieldSetElement = fieldsets[i];
-    
-    let node: HTMLElement = document.getElementById("Kerzen");
-    let childNodeHtml: string;
-    let art: Product[] = candle;
-
-    childNodeHtml = "";
-    childNodeHtml += "<select name=Select id=select>";
-    childNodeHtml += "<optgroup label=Kerzen></optgroup> ";
-    childNodeHtml += "<datalist id=options>";
-
-    for (let i: number = 0; i < candle.length; i++) {
-        childNodeHtml += "<option value=";
-        childNodeHtml += "lam" + i;
-        childNodeHtml += ">";
-        childNodeHtml += candle[i].name;
-        childNodeHtml += "</option>";
-    }
-    childNodeHtml += "</select>";
-    childNodeHtml += "<select>";
-    childNodeHtml += "<h3>Anzahl:</h3>";
-    childNodeHtml += "<option value=clear selected></option>";
-    for (let i: number = 0; i < 20; i += 1) {
-        childNodeHtml += "<option value=candlenum";
-        childNodeHtml += i;
-        childNodeHtml += " id=candlenum";
-        childNodeHtml += i;
-        childNodeHtml += ">";
-        childNodeHtml += i;
-        childNodeHtml += "</option>";
-    }
-    childNodeHtml += "</select>";
-    childNodeHtml += "</hr>";
-
-    node.innerHTML += childNodeHtml;
-        }
-    }
-    
-  //KUGELN
-    function init3(): void {
-        let fieldsets: NodeListOf<HTMLFieldSetElement> = document.getElementsByTagName("fieldset");
-        for (let i: number = 0; i < 1; i++) {
-            let fieldset: HTMLFieldSetElement = fieldsets[i];
-    
-    let node: HTMLElement = document.getElementById("Kugeln");
-    let childNodeHtml: string;
-    let art: Product[] = ball;
-
-    childNodeHtml = "";
-    childNodeHtml += "<select name=Select id=select>";
-    childNodeHtml += "<optgroup label=Kugeln></optgroup> ";
-    childNodeHtml += "<datalist id=options>";
-
-    for (let i: number = 0; i < candle.length; i++) {
-        childNodeHtml += "<option value=";
-        childNodeHtml += "lam" + i;
-        childNodeHtml += ">";
-        childNodeHtml += ball[i].name;
-        childNodeHtml += "</option>";
-    }
-    childNodeHtml += "</select>";
-    childNodeHtml += "<select>";
-    childNodeHtml += "<h3>Anzahl:</h3>";
-    childNodeHtml += "<option value=clear selected></option>";
-    for (let i: number = 0; i < 20; i += 1) {
-        childNodeHtml += "<option value=ballnum";
-        childNodeHtml += i;
-        childNodeHtml += " id=ballnum";
-        childNodeHtml += i;
-        childNodeHtml += ">";
-        childNodeHtml += i;
-        childNodeHtml += "</option>";
-    }
-    childNodeHtml += "</select>";
-    childNodeHtml += "</hr>";
-
-    node.innerHTML += childNodeHtml;
-        }
-    }
-  //Versand
-    function init4(): void {
-        let fieldsets: NodeListOf<HTMLFieldSetElement> = document.getElementsByTagName("fieldset");
-        for (let i: number = 0; i < 1; i++) {
-            let fieldset: HTMLFieldSetElement = fieldsets[i];
-    
-    let node: HTMLElement = document.getElementById("Versand");
-    let childNodeHtml: string;
-    let art: Product[] = shipment;
-
-    childNodeHtml = "";
-    childNodeHtml += "<select name=Select id=select>";
-    childNodeHtml += "<optgroup label=Versand></optgroup> ";
-    childNodeHtml += "<datalist id=options>";
-
-    for (let i: number = 0; i < shipment.length; i++) {
-        childNodeHtml += "<option value=";
-        childNodeHtml += "lam" + i;
-        childNodeHtml += ">";
-        childNodeHtml += shipment[i].name;
-        childNodeHtml += "</option>";
-    }
-    childNodeHtml += "</select>";
-    
-    childNodeHtml += "</hr>";
-
-    node.innerHTML += childNodeHtml;
-        }
-    }
-    function handleChange(_event: Event): void {
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+            function chooseNumber(_a: number, _fieldset: HTMLFieldSetElement, _value: HeteroPredef[]): void {
+                let input: HTMLInputElement = document.createElement("input");
+                _fieldset.appendChild(input);
+                input.type = "number";
+                input.min = "0";
+                input.max = "50";
+                input.step = "1";
+                input.value = _value[_a].name;
+                input.id = _value[_a].name;
+                let label: HTMLLabelElement = document.createElement("label");
+                _fieldset.appendChild(label);
+            }
+
+           /*  function handleChange(_event: Event): void {
+                 let target: HTMLInputElement = <HTMLInputElement>_event.target;
+                 if (this.id == value[a].name)
+                 console.log("Changed " + target.name + " to " + target.checked);}*/
+                 
+                   
+             
+            
+
+            }
