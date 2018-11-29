@@ -105,12 +105,35 @@
                 _fieldset.appendChild(label);
             }
 
-           /*  function handleChange(_event: Event): void {
-                 let target: HTMLInputElement = <HTMLInputElement>_event.target;
+            function handleChange (_event: Event,value:any,a:number): void {
+                /* let target: HTMLInputElement = <HTMLInputElement>_event.target;
                  if (this.id == value[a].name)
-                 console.log("Changed " + target.name + " to " + target.checked);}*/
-                 
-                   
+                     console.log("Changed " + target.name + " to " + target.checked);*/
+                 var inputs: NodeListOf<Element> = document.getElementsByClassName("articleInput");
+                 var sum: number = 0;
+                 var orderSummaryList: string[] = [];
+                 for (var i: number = 0; i < inputs.length; i++) {
+                     var input: HTMLInputElement = <HTMLInputElement>inputs[i];
+                     if (this.id == value[a].name) {
+                         var selectElement: HTMLSelectElement = <HTMLSelectElement>inputs[i];
+                         var name: string = selectElement.options[selectElement.selectedIndex].innerHTML;
+                         sum += Number(selectElement.value);
+                         orderSummaryList.push(name);
+                     } else {
+                         var amount: number = Number(input.value);
+                         var price: number = Number(input.getAttribute("price"));
+                         name = input.getAttribute("name");
+                         var tempPrice: number = amount * price;
+                         sum += tempPrice;
+
+                         tempPrice = Math.round(tempPrice * 100) / 100;
+
+                         if (amount > 0) {
+                             orderSummaryList.push(name + " " + tempPrice + " EUR");
+                         }
+                     }
+                 }
+            } 
              
             
 

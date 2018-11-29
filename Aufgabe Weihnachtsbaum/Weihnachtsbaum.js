@@ -81,5 +81,33 @@ var Wbk;
         var label = document.createElement("label");
         _fieldset.appendChild(label);
     }
+    function handleChange(_event, value, a) {
+        /* let target: HTMLInputElement = <HTMLInputElement>_event.target;
+         if (this.id == value[a].name)
+             console.log("Changed " + target.name + " to " + target.checked);*/
+        var inputs = document.getElementsByClassName("articleInput");
+        var sum = 0;
+        var orderSummaryList = [];
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            if (this.id == value[a].name) {
+                var selectElement = inputs[i];
+                var name = selectElement.options[selectElement.selectedIndex].innerHTML;
+                sum += Number(selectElement.value);
+                orderSummaryList.push(name);
+            }
+            else {
+                var amount = Number(input.value);
+                var price = Number(input.getAttribute("price"));
+                name = input.getAttribute("name");
+                var tempPrice = amount * price;
+                sum += tempPrice;
+                tempPrice = Math.round(tempPrice * 100) / 100;
+                if (amount > 0) {
+                    orderSummaryList.push(name + " " + tempPrice + " EUR");
+                }
+            }
+        }
+    }
 })(Wbk || (Wbk = {}));
 //# sourceMappingURL=Weihnachtsbaum.js.map
