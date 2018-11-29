@@ -46,21 +46,21 @@ var Wbk;
          }
      }*/
     function createFormat(_homoVar) {
-        for (var key in _homoVar) {
-            var value = _homoVar[key];
-            var fieldsets = document.getElementsByTagName("fieldset");
-            for (var b = 0; b < 5; b++) {
-                var i = 0 + b;
+        for (let key in _homoVar) {
+            let value = _homoVar[key];
+            let fieldsets = document.getElementsByTagName("fieldset");
+            for (let b = 0; b < 5; b++) {
+                let i = 0 + b;
                 i < value.length;
-                var fieldset = fieldsets[i];
-                for (var a = 0; a < value.length; a++) {
-                    var input = document.createElement("input");
+                let fieldset = fieldsets[i];
+                for (let a = 0; a < value.length; a++) {
+                    let input = document.createElement("input");
                     fieldset.appendChild(input);
                     input.type = "checkbox";
                     input.name = "type";
                     input.value = value[a].name;
                     input.id = value[a].name;
-                    var label = document.createElement("label");
+                    let label = document.createElement("label");
                     fieldset.appendChild(label);
                     chooseNumber(a, fieldset, value);
                     label.setAttribute("chosenType", value[a].name);
@@ -70,7 +70,7 @@ var Wbk;
         }
     }
     function chooseNumber(_a, _fieldset, _value) {
-        var input = document.createElement("input");
+        let input = document.createElement("input");
         _fieldset.appendChild(input);
         input.type = "number";
         input.min = "0";
@@ -78,7 +78,7 @@ var Wbk;
         input.step = "1";
         input.value = _value[_a].name;
         input.id = _value[_a].name;
-        var label = document.createElement("label");
+        let label = document.createElement("label");
         _fieldset.appendChild(label);
     }
 })(Wbk || (Wbk = {}));

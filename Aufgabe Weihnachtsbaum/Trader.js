@@ -6,4 +6,4 @@ var Weihnachtsbaumkonfigurator;
     Weihnachtsbaumkonfigurator.candle = [{ name: "candle", price: 1, color: "red", size: "small" }, { name: "candle", price: 1.50, color: "red", size: "medium" }, { name: "candle", price: 2, color: "red", size: "big" }, { name: "candle", price: 1, color: "white", size: "small" }, { name: "candle", price: 1.50, color: "white", size: "medium" }, { name: "candle", price: 2, color: "white", size: "big" }];
     Weihnachtsbaumkonfigurator.shipment = [{ name: "DHL", price: 4.99, color: "", size: "" }, { name: "Hermes", price: 3.99, color: "", size: "" }, { name: "UPS", price: 6.99, color: "", size: "" }];
 })(Weihnachtsbaumkonfigurator || (Weihnachtsbaumkonfigurator = {}));
-//# sourceMappingURL=HändlerDatei.js.map
+//# sourceMappingURL=Trader.js.map
