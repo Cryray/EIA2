@@ -14,7 +14,7 @@ var L06_SendData;
         console.log("Listening"); //Konsolenausgabe "Listening"
     }
     function handleRequest(_request, _response) {
-        console.log("I hear voices!"); // Konsolenausgabe "I hear voices"
+        console.log("_request.url"); // Konsolenausgabe "I hear voices"
         _response.setHeader("content-type", "text/html; charset=utf-8"); // Die Server Response setzt charset=utf-8 im HTML Dokument  
         _response.setHeader("Access-Control-Allow-Origin", "*"); // Die Server Response gibt zugriff bzw erlaubt die Origin (Settings)
         _response.write(_request.url); // Die Server Response sucht die URL 

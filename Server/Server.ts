@@ -16,7 +16,7 @@ namespace L06_SendData {
     }
 
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void { //Request wird definiert als Htto.IncomingMessage und response wird definiert als Http.Server Response   
-        console.log("I hear voices!"); // Konsolenausgabe "I hear voices"
+        console.log("_request.url"); // Konsolenausgabe "I hear voices"
 
         _response.setHeader("content-type", "text/html; charset=utf-8");   // Die Server Response setzt charset=utf-8 im HTML Dokument  
         _response.setHeader("Access-Control-Allow-Origin", "*"); // Die Server Response gibt zugriff bzw erlaubt die Origin (Settings)
