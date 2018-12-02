@@ -1,7 +1,7 @@
-//import * as Http from "http";
+import * as Http from "http";
 
 namespace L06_SendData {
-/*    console.log("Starting server"); //Konsolenausgabe Starting Server   
+    console.log("Starting server"); //Konsolenausgabe Starting Server   
     let port: number = process.env.PORT; // Variable Port die den Port (Bsp 8100) festlegt      
     if (port == undefined)
         port = 8100; // Wenn der Port nicht definiert wird wird er standardgemäß auf 8100 gesetzt
@@ -25,4 +25,4 @@ namespace L06_SendData {
         
         _response.end(); // Die Server Response wird beendet
     }
-*/}
+}

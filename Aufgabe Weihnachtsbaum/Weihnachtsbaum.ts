@@ -66,11 +66,12 @@ namespace Weihnachtsbaumkonfigurator {
          }
      }*/
     function createFormat( _homoVar: HomoVar ): void {
+     //   for ( let b: number = 0; b < 5; b++ ) {
         for ( let key in _homoVar ) {
             let value: HeteroPredef[] = _homoVar[key];
             let fieldsets: NodeListOf<HTMLFieldSetElement> = document.getElementsByTagName( "fieldset" );
-            for ( let b: number = 0; b < 5; b++ ) {
-                let i: number = 0 + b; i < value.length;
+            
+                let i: number = 0 ; i < value.length;i++;
                 let fieldset: HTMLFieldSetElement = fieldsets[i];
                 for ( let a: number = 0; a < value.length; a++ ) {
                     let input: HTMLInputElement = document.createElement( "input" );
@@ -87,7 +88,7 @@ namespace Weihnachtsbaumkonfigurator {
                 }
             }
         }
-    }
+ //   }
     function chooseNumber( _a: number, _fieldset: HTMLFieldSetElement, _value: HeteroPredef[] ): void {
         let input: HTMLInputElement = document.createElement( "input" );
         _fieldset.appendChild( input );

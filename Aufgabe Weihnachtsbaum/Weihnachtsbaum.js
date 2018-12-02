@@ -46,29 +46,30 @@ var Weihnachtsbaumkonfigurator;
          }
      }*/
     function createFormat(_homoVar) {
+        //   for ( let b: number = 0; b < 5; b++ ) {
         for (let key in _homoVar) {
             let value = _homoVar[key];
             let fieldsets = document.getElementsByTagName("fieldset");
-            for (let b = 0; b < 5; b++) {
-                let i = 0 + b;
-                i < value.length;
-                let fieldset = fieldsets[i];
-                for (let a = 0; a < value.length; a++) {
-                    let input = document.createElement("input");
-                    fieldset.appendChild(input);
-                    input.type = "checkbox";
-                    input.name = "type";
-                    input.value = value[a].name;
-                    input.id = value[a].name;
-                    let label = document.createElement("label");
-                    fieldset.appendChild(label);
-                    chooseNumber(a, fieldset, value);
-                    label.setAttribute("chosenType", value[a].name);
-                    label.innerHTML = value[a].name + " " + value[a].price + "Euro ";
-                }
+            let i = 0;
+            i < value.length;
+            i++;
+            let fieldset = fieldsets[i];
+            for (let a = 0; a < value.length; a++) {
+                let input = document.createElement("input");
+                fieldset.appendChild(input);
+                input.type = "checkbox";
+                input.name = "type";
+                input.value = value[a].name;
+                input.id = value[a].name;
+                let label = document.createElement("label");
+                fieldset.appendChild(label);
+                chooseNumber(a, fieldset, value);
+                label.setAttribute("chosenType", value[a].name);
+                label.innerHTML = value[a].name + " " + value[a].price + "Euro ";
             }
         }
     }
+    //   }
     function chooseNumber(_a, _fieldset, _value) {
         let input = document.createElement("input");
         _fieldset.appendChild(input);
