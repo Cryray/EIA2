@@ -1,48 +1,79 @@
-<html>
-<html>
+<!DOCTYPE html>
+<html lang="de">
 <head>
 <meta charset="utf-8">
-<script src="HändlerDatei.js"></script>
-<script src="newchristmas.js"></script>
-<link rel="stylesheet" type="text/css" href="Weihnachtsbaum.css">
-<title>Design your Christmas Tree</title>
+<title>Gestalte deinen Weihnachtsbaum</title>
+
+<script src="wbk.js"></script>
+<script src="verkaufer.js"></script>
+ <link rel="stylesheet" type="text/css" href="Weihnachtsbaum.css">
+
 </head>
-
 <body>
-<fieldset id=Baumart>
-		<legend>Baumart</legend>
+
+<h1>Weihnachtsbaum Konfigurator </h1>
+<form action="https://eia2ws18.herokuapp.com/" method="get">
+<fieldset id="trees">
+<legend>Baumart</legend>
+</fieldset>
+
+<fieldset id="treeholder">
+<legend>Halterungen </legend>
+</fieldset>
+
+<fieldset id="lightstring">
+<legend>Lichterketten</legend>
+</fieldset>
+
+<fieldset id="balls">
+<legend>Kugeln</legend>
+</fieldset>
+
+<fieldset id="lametta">
+<legend>Lametta</legend>
+</fieldset>
+
+<fieldset id="top">
+<legend>Spitze</legend>
+</fieldset>
+
+<fieldset id="Lieferoptionen">
+		<legend> Lieferoptionen </legend>
+		<input type="radio" name="Radiogroup" value="radio1" id="radio1" />
+		<label for="radio1">UPS</label>
+		<input type="radio" name="Radiogroup" value="radio2" id="radio2"/>
+		<label for="radio2">Hermes</label>
+		<input type="radio" name="Radiogroup" value="radio3" id="radio3"/>
+		<label for="radio3">DHL</label>
 	</fieldset>
-	<fieldset id=Lametta>
-		<legend>Lametta</legend>
+	
+<fieldset id="text">
+		<legend> Lieferadresse </legend>
+		Vor- und Zuname
+		<input type="text" name="Text" placeholder="Mustermann" required/>
+		<hr/>
+		Straße und Hausnummer
+		<input type="text" name="Password" placeholder="Musterstraße 1"/>
+		<hr/>
+		PLZ
+		<input type="text" name="Pattern" pattern="[0-9]{5}" placeholder="123"/>
+		<hr/>
+		Mail
+		<input type="email" name="Mail" placeholder="mustermann@musteradresse.com"/>
+		<hr/>
+		Stadt
+		<input type="text" name="Url" placeholder="Musterstadt"/>
+		<hr/>
+		Telefonummer
+		<input name="text" name="Pattern" pattern="[0-9]{10}" placeholder="123456789"></input>
+		
+		
 	</fieldset>
-	<fieldset id=Kugeln>
-		<legend>Kugeln</legend>
-	</fieldset>
-	<fieldset id=Kerzen>
-		<legend>Kerzen</legend>
-	</fieldset>
-	<fieldset id=Versand>
-		<legend>Versand</legend>
-	</fieldset>
-	<div id=summary>
-	<h2>Übersicht</h2> <br>
-	<h3>Baumart:</h3> <br>
-	<h3>Lametta:</h3> <br>
-	<h3>Kugeln:</h3> <br>
-	<h3>Kerzen:</h3> <br>
-	<h3>Versand:</h3> <br>
+	<div id= "cart">
 	</div>
+	
+	
+<button id="button">Überprüfung</button>
 
-</body>
-
-
-
-
-
-
-
-
-
-
-
-</html>
+<button type="submit">Jetzt bestellen</button>
+</form>
