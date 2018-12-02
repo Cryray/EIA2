@@ -48,8 +48,8 @@ interface WeakSetConstructor { }
 declare var process: NodeJS.Process;
 declare var global: NodeJS.Global;
 declare var console: Console;
-declare var EventSource: any;
-type EventSource = any;
+//declare var EventSource: any;
+//type EventSource = any;
 
 declare var __filename: string;
 declare var __dirname: string;
