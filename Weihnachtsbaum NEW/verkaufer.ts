@@ -31,15 +31,15 @@ namespace HolyChristmasTree2 {
         ],
 
         "balls": [
-            { name: "rot", price: 1.50 },
-            { name: "gruen", price: 3.50 },
-            { name: "weiss", price: 5.95 }
+            { name: "rot Kugel", price: 1.50 },
+            { name: "gruen Kugel", price: 3.50 },
+            { name: "weiss Kugel", price: 5.95 }
         ],
 
         "lametta": [
-            { name: "rot", price: 4.99 },
-            { name: "Gold", price: 4.99 },
-            { name: "silber", price: 4.99 }
+            { name: "rot Lametta", price: 4.99 },
+            { name: "Gold Lametta", price: 4.99 },
+            { name: "silber Lametta", price: 4.99 }
         ],
 
         "top": [
