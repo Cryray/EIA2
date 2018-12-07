@@ -1,8 +1,10 @@
 var HolyChristmasTree2;
 (function (HolyChristmasTree2) {
     window.addEventListener("DOMContentLoaded", init);
+    let address = "http://localhost:8100";
     function init() {
         createInput();
+        setupAsyncForm();
         //  document.getElementById("button").addEventListener("click", checkOrder);
     }
     function createInput() {
@@ -63,6 +65,47 @@ var HolyChristmasTree2;
             }
         }
         p.innerHTML += "Geamtpreis " + total.toFixed(2) + "Euro";
+    }
+    /*    function checkOrder(_event: Event): void {
+            for (let key in offers) {
+                let category: Product[] = offers[key];
+                let fieldset: HTMLElement = document.getElementById(key);
+                let elements: HTMLCollection = <HTMLInputElement>fieldset.getElementsByClassName
+                for (let i: number = 0; 0 < i++) {
+                    if ()
+                }
+                //            document.getElementById("Lieferoptionen");
+                //            document.getElementById("text");
+                //            for (let a: number = 0; a < product.length; a++)
+                //                if (key == "tree" || "treeholder" || "Lieferoptionen" || "text") {
+                //                    document.getElementById("notSelectedYet").innerHTML = "I'm sorry, you need to fill out a few more things!";
+                //                }
+                //                   else {
+                //                    document.getElementById(el).innerHTML = "All done, thank you for your order!";
+                //  //                  }
+            }
+        }*/
+    function setupAsyncForm() {
+        let button = document.querySelector("[type=button]");
+        button.addEventListener("click", handleClickOnAsync);
+    }
+    function handleClickOnAsync(_event) {
+        let cartos = document.getElementById("cart");
+        let name = document.querySelector("#cart").innerText;
+        sendRequestWithCustomData(name);
+    }
+    function sendRequestWithCustomData(_name) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", address + "?name=" + _name, true);
+        xhr.addEventListener("readystatechange", handleStateChange);
+        xhr.send();
+    }
+    function handleStateChange(_event) {
+        var xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
+            console.log("response: " + xhr.response);
+        }
     }
 })(HolyChristmasTree2 || (HolyChristmasTree2 = {}));
 //# sourceMappingURL=newchristmas.js.map
