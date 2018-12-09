@@ -93,6 +93,7 @@ var HolyChristmasTree2;
         let cartos = document.getElementById("cart");
         let name = document.querySelector("#cart").innerText;
         sendRequestWithCustomData(name);
+        alert(name);
     }
     function sendRequestWithCustomData(_name) {
         let xhr = new XMLHttpRequest();

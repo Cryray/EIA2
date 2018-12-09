@@ -114,6 +114,8 @@ namespace HolyChristmasTree2 {
         let cartos: HTMLElement = document.getElementById("cart");
         let name: string = (<HTMLInputElement>document.querySelector("#cart")).innerText;
         sendRequestWithCustomData(name);
+        
+        alert(name);
     }
 
     function sendRequestWithCustomData(_name: string): void {
