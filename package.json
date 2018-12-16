@@ -1,11 +1,11 @@
 {
-	"name": "TestServer",
+	"name": "MiniServer",
 	"version": "1.0.0",
 	"description": "Minimal server just bouncing the URL",
-	"author": "Leon Hoffmann-Heyden",
+	"author": "Leon",
 	"main": "Server.js",
 	"scripts": {
-		"start": " node Server/Server.js"
+		"start": "node ServerAndDatabase/Server/Server.js"
 	},
 	"engines": {
 		"node": "8.10.0"

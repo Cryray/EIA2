@@ -1,7 +1,7 @@
 import * as Http from "http"; //http Objekt wird erstellt -> interpreter schaut nach jedem möglichen import im http Modul und fügt es dem http Objekt im Code hinzu
 import * as Url from "url";
 
-namespace L06_SendData {
+namespace StudentData {
     interface Product {
         [key: string]: number;
     }
@@ -9,7 +9,7 @@ namespace L06_SendData {
     let port: number = process.env.PORT; //Variable port vom typ number wird festgelegt, port gibt an an welchem Port der Server "hören" soll, globale process.env Variable wird von "Node" beim Start der benutzten Applikation indiziert , sie representiert den Zustand der system Umgebung deiner Applikation 
     // wenn sie gestartet wird.
     if (port == undefined)  //wenn kein spezielle Port angegeben ist dann Port 8100 nutzen
-        port = 8100;
+        port = 81000;
 
     let server: Http.Server = Http.createServer();  //variable server wird erstellt vom typ http,kann ports auf computer abrufen und funktionen ausführen, wandelt verhalten von computer in das eine http-servers um
     server.addListener("request", handleRequest); // wenn im Server eine Anfrage stattfindet dann wird die Funktion handleRequest aufgerufen
