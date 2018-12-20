@@ -2,7 +2,7 @@ var DatabaseClient;
 (function (DatabaseClient) {
     window.addEventListener("load", init);
     // let serverAddress: string = "http://localhost:8100";
-    let serverAddress = "https://eia2ws18.herokuapp.com/";
+    let serverAddress = "https://githubcryray.herokuapp.com/";
     function init(_event) {
         console.log("Init");
         let insertButton = document.getElementById("insert");
