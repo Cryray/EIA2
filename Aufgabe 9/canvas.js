@@ -5,7 +5,11 @@ function init(_event) {
     crc2 = canvas.getContext("2d");
     drawSky();
     drawHill();
+    drawCloud();
+    drawCloud2();
     drawSun();
+    drawHuman();
+    drawHuman2();
     placeTreeRandom();
     placeSnowflakeRandom();
 }
@@ -92,7 +96,7 @@ function placeTreeRandom() {
         }
     }
 }
-function drawSnowflake(_x, _y) {
+function drawSnow(_x, _y) {
     crc2.fillStyle = "#E0F8F7";
     crc2.strokeStyle = "#E0F8F7";
     crc2.lineWidth = 1;
@@ -116,7 +120,58 @@ function placeSnowflakeRandom() {
     for (let i = 0; i < 35; i++) {
         let x = Math.random() * crc2.canvas.width;
         let y = Math.random() * crc2.canvas.height;
-        drawSnowflake(x, y);
+        drawSnow(x, y);
     }
+}
+function drawCloud() {
+    crc2.beginPath();
+    crc2.moveTo(90, 90);
+    crc2.arc(85, 90, 17, 0, 2 * Math.PI);
+    crc2.arc(100, 90, 20, 0, 2 * Math.PI);
+    crc2.arc(75, 90, 20, 0, 2 * Math.PI);
+    crc2.arc(90, 85, 20, 0, 2 * Math.PI);
+    crc2.fillStyle = "#FFFFFF";
+    crc2.fill();
+}
+function drawCloud2() {
+    crc2.beginPath();
+    crc2.moveTo(240, 100);
+    crc2.arc(240, 70, 20, 0, 2 * Math.PI);
+    crc2.arc(233, 63, 20, 0, 2 * Math.PI);
+    crc2.arc(247, 65, 20, 0, 2 * Math.PI);
+    crc2.arc(235, 74, 20, 0, 2 * Math.PI);
+    crc2.arc(225, 73, 20, 0, 2 * Math.PI);
+    crc2.fillStyle = "#FFFFFF";
+    crc2.fill();
+}
+function drawHuman() {
+    crc2.fillStyle = "#000000";
+    crc2.fillRect(20, 400, 8, -18);
+    crc2.beginPath();
+    crc2.arc(22.5, 380, 10, 0, 2 * Math.PI);
+    crc2.fill();
+    crc2.beginPath();
+    crc2.fillStyle = "#000000";
+    crc2.arc(39, 411, 4, 0, 2 * Math.PI);
+    crc2.fill();
+    crc2.beginPath();
+    crc2.moveTo(10, 395);
+    crc2.lineTo(40, 414);
+    crc2.stroke();
+}
+function drawHuman2() {
+    crc2.fillStyle = "#000000";
+    crc2.fillRect(100, 500, 8, -18);
+    crc2.beginPath();
+    crc2.arc(102.5, 480, 10, 0, 2 * Math.PI);
+    crc2.fill();
+    crc2.beginPath();
+    crc2.fillStyle = "#000000";
+    crc2.arc(119, 511, 4, 0, 2 * Math.PI);
+    crc2.fill();
+    crc2.beginPath();
+    crc2.moveTo(90, 495);
+    crc2.lineTo(120, 514);
+    crc2.stroke();
 }
 //# sourceMappingURL=canvas.js.map
