@@ -1,4 +1,9 @@
-let crc2: CanvasRenderingContext2D;
+namespace Aufgabe10{
+export let crc2: CanvasRenderingContext2D;
+let snowflakes: Snow[] = [];
+let child1: child[] = [];
+let fps: number = 25;
+let imgData: ImageData;
  window.addEventListener("load", init);
     function init(_event: Event): void {
 
@@ -12,8 +17,29 @@ let crc2: CanvasRenderingContext2D;
         drawHuman();
         drawHuman2();
         placeTreeRandom();
-        placeSnowflakeRandom();
+        //placeSnowflakeRandom();
         
+        imgData = crc2.getImageData(0, 0, 360, 700);
+        
+         for (let i: number = 0; i < 50; i++) {
+            let snow: Snow = new Snow();
+            snow.x = Math.random() * crc2.canvas.width;
+            snow.y = Math.random() * crc2.canvas.height;
+            snow.dx = Math.random() * 2 + 4;
+            snow.color = "#FFFFFF";
+
+            snowflakes.push(snow);
+        }
+        for (let i: number = 0; i < 8; i++) {
+            let children1: child = new child();
+            children1.x = (Math.random() * crc2.canvas.width);
+            children1.y = (Math.random() * crc2.canvas.height);
+            children1.dx = Math.random() * 2- 4;
+            children1.dy = Math.random() *2 + 4;
+
+            child1.push(children1);
+        }
+        reload();
     }
 function drawSky(): void {
 
@@ -108,7 +134,9 @@ function drawSun() {
             }
         }
     }
- function drawSnow(_x: number, _y: number): void {
+var z: number = 200;
+/* function drawSnow(_x: number, _y: number): void {
+       // drawSnow(_x,_y);
         crc2.fillStyle = "#E0F8F7";
         crc2.strokeStyle = "#E0F8F7";
         crc2.lineWidth = 1;
@@ -130,6 +158,7 @@ function drawSun() {
 
         crc2.fill();
         crc2.stroke();
+        _x+= 1;
     }
 function placeSnowflakeRandom(): void {
         console.log("randomJan");
@@ -138,7 +167,7 @@ function placeSnowflakeRandom(): void {
             let y: number = Math.random() * crc2.canvas.height;
             drawSnow(x, y);
         }
-    }
+    }*/
  function drawCloud(): void {
          crc2.beginPath();
         crc2.moveTo(90, 90);
@@ -190,3 +219,29 @@ function drawHuman2(): void {
             crc2.lineTo(120, 514);
             crc2.stroke();     
         }
+
+ 
+function reload(): void {
+
+        window.setTimeout(reload, 1000 / fps);
+        crc2.putImageData(imgData, 0, 0);
+
+        for (let i: number = 0; i < snowflakes.length; i++) {
+            let snow: Snow = snowflakes[i];
+            snow.move();
+            snow.draw();
+        }
+     for (let i: number = 0; i < 5; i++) {
+            let children1: child = child1[i];
+            children1.move();
+            children1.draw();
+        }
+    }  
+
+
+
+
+
+
+
+}
