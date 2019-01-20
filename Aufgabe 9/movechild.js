@@ -14,6 +14,7 @@ var Aufgabe10;
             Aufgabe10.crc2.beginPath();
             Aufgabe10.crc2.moveTo(10, 395);
             Aufgabe10.crc2.lineTo(40, 414);
+            Aufgabe10.crc2.closePath();
             Aufgabe10.crc2.stroke();
         }
         move() {

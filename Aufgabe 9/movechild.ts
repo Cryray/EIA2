@@ -19,6 +19,7 @@ namespace Aufgabe10 {
             crc2.beginPath();
             crc2.moveTo(10, 395);
             crc2.lineTo(40, 414);
+            crc2.closePath();
             crc2.stroke();     
         }
         move(): void {
