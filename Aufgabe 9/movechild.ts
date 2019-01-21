@@ -1,10 +1,18 @@
-namespace Aufgabe10 {
-    export class child {
-         x: number;
-        y: number;
-        dx: number;
-        dy: number;
-        color: string;
+namespace Inheritance_Rodelhang {
+    
+
+    export class child extends DrawObject {
+        xD: number;
+        yD: number;
+        colorBody: string;
+        md: boolean;
+
+        constructor() {
+            super();
+            this.xP = Math.random() * 75 + 100;
+            this.yP = Math.random() * 75 + 400;
+            
+        }
         
          draw(): void {
              crc2.fillStyle = "#000000";

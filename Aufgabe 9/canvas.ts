@@ -1,4 +1,4 @@
-namespace Aufgabe10{
+namespace Inheritance_Rodelhang {
 export let crc2: CanvasRenderingContext2D;
 let snowflakes: Snow[] = [];
 let child1: child[] = [];

@@ -1,10 +1,14 @@
-namespace Aufgabe10 {
-    export class Snow {
-        x: number;
-        y: number;
-        dx: number;
-        dy: number;
-        color: string;
+namespace Inheritance_Rodelhang {
+
+    export class Snow extends DrawObject {
+        xD: number;
+        yD: number;
+
+        constructor() {
+            super();
+            this.xP = Math.random() * 500;
+            this.yP = Math.random() * 700;
+        }
 
         move(): void {
 
