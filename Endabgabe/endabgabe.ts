@@ -217,6 +217,7 @@ namespace rodelbahn {
             childd.draw();
 
             childsDown.push(childd);
+            
         }
     }
   
