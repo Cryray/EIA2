@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<script src="endabgabe.js" type="text/javascript" charset="utf-8"></script>
 <title>Canvas</title>
+<meta charset="utf-8" />
+<script src="child.js" type="text/javascript" charset="utf-8"></script>
+<script src="snow.js" type="text/javascript" charset="utf-8"></script>
+<script src="endabgabe.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="endabgabe.css">
+
+<style>
+.crosshair {
+cursor:crosshair
+}
+</style>
+
 </head>
 <body>
-	<canvas width=700 height=700></canvas>
+ <div id="menu">
+ <button id="play">Play Game</button>
+ <button id="highscore">Highscores</button>
+ <button id="options">Options</button>
+ </div>
+	<canvas class="crosshair" width=700 height=1100></canvas>
+	<p id="score"></p>
+	
 </body>
 </html>
