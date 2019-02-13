@@ -5,12 +5,16 @@ var rodelbahn;
     let childsDown = [];
     let snowballs = [];
     let score = 0;
+    let timer = 60;
     let fps = 60;
     let imgData;
     function showMenu() {
         document.getElementById("play").addEventListener("click", init);
     }
     function init(_event) {
+        score = 0;
+        timer = 60;
+        document.getElementById("score").style.display = "initial";
         let canvas = document.getElementsByTagName("canvas")[0];
         document.getElementsByTagName("div")[0].style.display = "none";
         rodelbahn.crc2 = canvas.getContext("2d");
@@ -23,8 +27,20 @@ var rodelbahn;
         imgData = rodelbahn.crc2.getImageData(0, 0, 700, 1100);
         generateSnow();
         generateChildDown();
+        for (let i = 0; i < 4; i++) {
+            createChild();
+        }
         update();
         canvas.addEventListener("click", throwSnowball);
+    }
+    function createChild() {
+        let child = new rodelbahn.ChildDown();
+        child.x = 0;
+        child.y = Math.random() * 1100 + 300;
+        child.dx = (Math.random() + 1) * 3;
+        child.dy = (Math.random() + 1) * 2;
+        child.state = "ridedown";
+        childsDown.push(child);
     }
     function update() {
         rodelbahn.crc2.putImageData(imgData, 0, 0);
@@ -34,12 +50,27 @@ var rodelbahn;
             snowflake.move();
             snowflake.draw();
         }
-        for (let i = 0; i < childsDown.length; i++) {
-            let childd = childsDown[i];
+        ///////
+        /*
+        for (let i: number = 0; i < childsDown.length; i++) {
+            let childd: ChildDown = childsDown[i];
             childd.move();
             childd.draw();
             console.log(childsDown.length);
         }
+        */
+        //////
+        /////////////////////////////////
+        for (let i = 0; i < childsDown.length; i++) {
+            childsDown[i].move();
+            childsDown[i].draw();
+            if (childsDown[i].x < -10 || childsDown[i].y > (rodelbahn.crc2.canvas.height + 10)) {
+                childsDown.splice(i, 1);
+                createChild();
+                console.log("length:" + childsDown.length);
+            }
+        }
+        //////////////////////////////   
         for (let i = 0; i < snowballs.length; i++) {
             if (snowballs[i].timer > 0) {
                 snowballs[i].draw();
@@ -52,7 +83,7 @@ var rodelbahn;
                         console.log("yooo" + rodelbahn.ChildDown.length);
                         if (snowballs[i].checkIfHit(childsDown[i2].x, childsDown[i2].y) == true && childsDown[i2].state == "ridedown") {
                             childsDown[i2].state = "dead";
-                            score += childsDown[i2].getSpeed() * 10;
+                            score += childsDown[i2].getSpeed();
                             console.log("score:" + score);
                         }
                     }
@@ -151,7 +182,7 @@ var rodelbahn;
             let childd = new rodelbahn.ChildDown();
             childd.x = Math.random() * 1000;
             childd.y = Math.random() * 250 + 400;
-            childd.color = childd.getRandomColor();
+            //childd.color = childd.getRandomColor();
             childd.draw();
             childsDown.push(childd);
         }
@@ -165,5 +196,6 @@ var rodelbahn;
         ball.timer = 25;
         snowballs.push(ball);
     }
+    document.getElementById("score").innerText = score.toString();
 })(rodelbahn || (rodelbahn = {}));
 //# sourceMappingURL=endabgabe.js.map

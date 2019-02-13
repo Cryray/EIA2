@@ -61,9 +61,9 @@ margin: 2px 2px;
 }
 
 #score {
-	position: relative;
+	
 	padding: 0.25em 0.5em;
-	border: solid 3px darkred;
+	border: solid 3px #0080ff;
 	margin-top: 0px;
 	margin-left: 0px;
 	width: 200px;
@@ -71,4 +71,4 @@ margin: 2px 2px;
 	width: 200px;
 	background-color: #e6e6e6;
 }
-
+ 
