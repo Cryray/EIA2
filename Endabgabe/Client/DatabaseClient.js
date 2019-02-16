@@ -16,8 +16,7 @@ var DatabaseClient;
         let inputs = document.getElementsByTagName("input");
         let query = "command=insert";
         query += "&name=" + inputs[0].value;
-        query += "&firstname=" + inputs[1].value;
-        query += "&matrikel=" + inputs[2].value;
+        query += "&score=" + document.getElementById("finalScore").getAttribute("value");
         console.log(query);
         sendRequest(query, handleInsertResponse);
     }
@@ -44,13 +43,30 @@ var DatabaseClient;
             alert(xhr.response);
         }
     }
+    function playerDataSort(_a, _b) {
+        let returnNumber;
+        if (_a.score > _b.score) {
+            returnNumber = -1;
+        }
+        else if (_a.score < _b.score) {
+            returnNumber = 1;
+        }
+        else {
+            returnNumber = 0;
+        }
+        return returnNumber;
+    }
     function handleFindResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let output = document.getElementsByTagName("textarea")[0];
-            output.value = xhr.response;
-            let responseAsJson = JSON.parse(xhr.response);
-            console.log(responseAsJson);
+            let output = document.getElementById("highscores");
+            let scores = [];
+            let dataArray = JSON.parse(xhr.response);
+            dataArray.sort(playerDataSort);
+            for (let i = 0; i < dataArray.length; i++) {
+                console.log(dataArray[i].name);
+                output.innerHTML += "<p id='showScores'><strong>Name: </strong>" + dataArray[i].name + "<br><strong>Score: </strong>" + dataArray[i].score + "</p>";
+            }
         }
     }
 })(DatabaseClient || (DatabaseClient = {}));

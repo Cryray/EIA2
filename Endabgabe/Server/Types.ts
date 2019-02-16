@@ -4,8 +4,7 @@ interface AssocStringString {
 
 interface StudentData {
     name: string;
-    firstname: string;
-    matrikel: number;
+    score: number;
 }
  interface MatrikelNummer {
      matrikel: number;

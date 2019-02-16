@@ -25,8 +25,7 @@ function handleRequest(_request, _response) {
         case "insert":
             let student = {
                 name: query["name"],
-                firstname: query["firstname"],
-                matrikel: parseInt(query["matrikel"])
+                score: parseInt(query["score"])
             };
             Database.insert(student);
             respond(_response, "storing data");

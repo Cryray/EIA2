@@ -53,6 +53,8 @@ var rodelbahn;
         document.getElementById("score").style.display = "none";
         document.getElementsByTagName("div")[0].style.display = "none";
         document.getElementById("endscreen").style.display = "initial";
+        document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
+        document.getElementById("insert").addEventListener("click", sendRequestWithCustomData);
         //  document.getElementById("retry").style.display = "initial";
         //   document.getElementById("retry").addEventListener("click", init);
         // document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
@@ -214,6 +216,39 @@ var rodelbahn;
         ball.y = y;
         ball.timer = 25;
         snowballs.push(ball);
+    }
+    function handleChange(_event) {
+        let target = _event.target;
+        target.setAttribute("value", target.value);
+    }
+    let address = "https://eia2-18.herokuapp.com/";
+    function sendRequestWithCustomData() {
+        console.log("requestcustom");
+        let xhr = new XMLHttpRequest();
+        let sendString = "";
+        sendString += "name:" + document.getElementById("textInput").getAttribute("value") + "&" + "score:" + score;
+        xhr.open("GET", address + "?" + sendString, true);
+        xhr.addEventListener("readystatechange", handleStateChange);
+        xhr.send();
+        highscores();
+    }
+    function handleStateChange(_event) {
+        var xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
+            console.log("response: " + xhr.response);
+        }
+    }
+    function highscores() {
+        document.getElementById("finalScore").innerText = score.toString();
+        document.getElementById("finalScore").setAttribute("value", score.toString());
+        document.getElementsByTagName("canvas")[0].style.display = "none";
+        document.getElementById("score").style.display = "none";
+        document.getElementsByTagName("div")[0].style.display = "none";
+        document.getElementById("endscreen").style.display = "none";
+        document.getElementById("highscoreList").style.display = "initial";
+        // document.getElementById("scores").style.display = "initial";
+        document.getElementById("refresh").addEventListener("click", highscores);
     }
 })(rodelbahn || (rodelbahn = {}));
 //# sourceMappingURL=endabgabe.js.map
