@@ -249,7 +249,7 @@ var rodelbahn;
         document.getElementById("endscreen").style.display = "none";
         document.getElementById("highscoreList").style.display = "initial";
         // document.getElementById("scores").style.display = "initial";
-        document.getElementById("refresh").addEventListener("click", highscores);
+        document.getElementById("highscore").addEventListener("click", highscores);
     }
 })(rodelbahn || (rodelbahn = {}));
 //# sourceMappingURL=endabgabe.js.map
