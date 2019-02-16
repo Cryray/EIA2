@@ -37,6 +37,7 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
                 score: parseInt(query["score"]) 
             };
             Database.insert(student);
+            console.log("ya yeet");
             respond(_response, "storing data");
             break;
         case "refresh":

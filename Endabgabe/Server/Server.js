@@ -28,6 +28,7 @@ function handleRequest(_request, _response) {
                 score: parseInt(query["score"])
             };
             Database.insert(student);
+            console.log("ya yeet");
             respond(_response, "storing data");
             break;
         case "refresh":
