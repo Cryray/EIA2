@@ -244,12 +244,12 @@ var rodelbahn;
         }
     }
     function highscores() {
+        document.getElementById("endscreen").style.display = "none";
         document.getElementById("finalScore").innerText = score.toString();
         document.getElementById("finalScore").setAttribute("value", score.toString());
         document.getElementsByTagName("canvas")[0].style.display = "none";
         document.getElementById("score").style.display = "none";
         document.getElementsByTagName("div")[0].style.display = "none";
-        document.getElementById("endscreen").style.display = "none";
         document.getElementById("highscoreList").style.display = "initial";
         // document.getElementById("scores").style.display = "initial";
         document.getElementById("refresh").addEventListener("click", highscores);
