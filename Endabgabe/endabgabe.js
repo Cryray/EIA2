@@ -16,6 +16,7 @@ var rodelbahn;
         document.getElementById("manualMenu").style.display = "none";
         document.getElementById("menu").style.display = "initial";
         document.getElementById("refresh").addEventListener("click", highscores);
+        document.getElementById("highscoreList").style.display = "none";
     }
     function showManual() {
         document.getElementById("endscreen").style.display = "none";
@@ -23,6 +24,7 @@ var rodelbahn;
         document.getElementById("menu").style.display = "none";
         document.getElementById("manualMenu").style.display = "initial";
         document.getElementById("back").addEventListener("click", showMenu);
+        document.getElementById("highscoreList").style.display = "none";
     }
     function init(_event) {
         score = 0;
@@ -31,6 +33,7 @@ var rodelbahn;
         let canvas = document.getElementsByTagName("canvas")[0];
         document.getElementsByTagName("div")[0].style.display = "none";
         document.getElementById("endscreen").style.display = "none";
+        document.getElementById("highscoreList").style.display = "none";
         rodelbahn.crc2 = canvas.getContext("2d");
         drawSky();
         drawSun();

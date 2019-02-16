@@ -23,6 +23,7 @@ namespace rodelbahn {
         document.getElementById("manualMenu").style.display = "none";
         document.getElementById("menu").style.display = "initial";
         document.getElementById("refresh").addEventListener("click", highscores);
+        document.getElementById("highscoreList").style.display= "none" ;
     }
     
     function showManual() {
@@ -31,6 +32,7 @@ namespace rodelbahn {
         document.getElementById("menu").style.display = "none";
         document.getElementById("manualMenu").style.display = "initial";
         document.getElementById("back").addEventListener("click", showMenu);
+        document.getElementById("highscoreList").style.display= "none" ;
         }
     function init(_event: Event): void {
         score = 0;
@@ -39,6 +41,7 @@ namespace rodelbahn {
         let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
         document.getElementsByTagName("div")[0].style.display = "none";
         document.getElementById("endscreen").style.display = "none";
+        document.getElementById("highscoreList").style.display= "none" ;
         crc2 = canvas.getContext("2d");
 
         drawSky();
