@@ -15,7 +15,7 @@ var rodelbahn;
         document.getElementById("score").style.display = "none";
         document.getElementById("manualMenu").style.display = "none";
         document.getElementById("menu").style.display = "initial";
-        document.getElementById("highscore").addEventListener("click", highscores);
+        document.getElementById("refresh").addEventListener("click", highscores);
     }
     function showManual() {
         document.getElementById("endscreen").style.display = "none";
@@ -249,7 +249,7 @@ var rodelbahn;
         document.getElementById("endscreen").style.display = "none";
         document.getElementById("highscoreList").style.display = "initial";
         // document.getElementById("scores").style.display = "initial";
-        document.getElementById("highscore").addEventListener("click", highscores);
+        document.getElementById("refresh").addEventListener("click", highscores);
     }
 })(rodelbahn || (rodelbahn = {}));
 //# sourceMappingURL=endabgabe.js.map
