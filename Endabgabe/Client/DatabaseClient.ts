@@ -70,7 +70,7 @@ namespace DatabaseClient {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let output: HTMLElement = document.getElementById("highscores");
-            let scores: number[] = [];
+            let highscores: number[] = [];
             let dataArray: StudentData[] = JSON.parse(xhr.response);
             dataArray.sort(playerDataSort);
             for (let i: number = 0; i < dataArray.length; i++) {

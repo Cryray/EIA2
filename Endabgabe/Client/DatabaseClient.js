@@ -60,7 +60,7 @@ var DatabaseClient;
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let output = document.getElementById("highscores");
-            let scores = [];
+            let highscores = [];
             let dataArray = JSON.parse(xhr.response);
             dataArray.sort(playerDataSort);
             for (let i = 0; i < dataArray.length; i++) {
