@@ -104,3 +104,15 @@ margin: 2px 2px;
 p {
 	font-size: 25px;
 }
+#highscoreList {
+	position: absolute;
+	display: block;
+  width: 400px;
+  height: 250px;
+  padding: 5px;
+  border: 1px solid blue; 
+  background-color: #ffff99; 
+  top: 450px;
+  left: 150px;
+  font-size: 16px;
+}
