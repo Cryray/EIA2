@@ -11,20 +11,33 @@ namespace rodelbahn {
 
 
 
-    let fps: number = 60;
+    let fps: number = 30;
 
     let imgData: ImageData;
 
     function showMenu() {
         document.getElementById("play").addEventListener("click", init);
+        document.getElementById("endscreen").style.display = "none";
+        document.getElementById("manual").addEventListener("click", showManual);
+        document.getElementById("score").style.display= "none" ;
+        document.getElementById("manualMenu").style.display = "none";
+        document.getElementById("menu").style.display = "initial";
     }
-
+    
+    function showManual() {
+        document.getElementById("endscreen").style.display = "none";
+        document.getElementById("score").style.display= "none" ;
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("manualMenu").style.display = "initial";
+        document.getElementById("back").addEventListener("click", showMenu);
+        }
     function init(_event: Event): void {
         score = 0;
         timer = 60;
         document.getElementById("score").style.display = "initial";
         let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
         document.getElementsByTagName("div")[0].style.display = "none";
+        document.getElementById("endscreen").style.display = "none";
         crc2 = canvas.getContext("2d");
 
         drawSky();
@@ -47,7 +60,20 @@ namespace rodelbahn {
 
 
     }
+    function endscreen(): void {
+        document.getElementById("finalScore").innerText = score.toString();
+        document.getElementById("finalScore").setAttribute("value", score.toString());
+        document.getElementsByTagName("canvas")[0].style.display = "none";
+        document.getElementById("score").style.display = "none";
+        document.getElementsByTagName("div")[0].style.display = "none";
+        document.getElementById("endscreen").style.display = "initial";
+      //  document.getElementById("retry").style.display = "initial";
+     //   document.getElementById("retry").addEventListener("click", init);
 
+       // document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
+
+      //  document.getElementById("button").addEventListener("click", sendRequestWithCustomData);
+    }
 
     function createChild(): void {
         let child: ChildDown = new ChildDown();
@@ -56,7 +82,6 @@ namespace rodelbahn {
         child.dx = (Math.random() + 1) * 3;
         child.dy = (Math.random() + 1) * 2;
         child.state = "ridedown";
-
         childsDown.push(child);
     }
 
@@ -64,7 +89,10 @@ namespace rodelbahn {
         crc2.putImageData(imgData, 0, 0);
         window.setTimeout(update, 1000 / fps);
 
-
+        if (snowballs.length > 25) {
+        console.log("Spiel Ende");
+            endscreen()
+        }
 
         for (let i: number = 0; i < snowflakes.length; i++) {
             let snowflake: Snow = snowflakes[i];
@@ -74,16 +102,7 @@ namespace rodelbahn {
 
         }
 
-        ///////
-        /*
-        for (let i: number = 0; i < childsDown.length; i++) {
-            let childd: ChildDown = childsDown[i];
-            childd.move();
-            childd.draw();
-            console.log(childsDown.length);
-        }
-        */
- //////
+        
         
         /////////////////////////////////
         for (let i: number = 0; i < childsDown.length; i++) {
@@ -92,21 +111,23 @@ namespace rodelbahn {
             if (childsDown[i].x < -10 || childsDown[i].y > (crc2.canvas.height + 10)) {
                 childsDown.splice(i, 1);
                 createChild();
-                console.log("length:" + childsDown.length);
+                
             }
         }
+        document.getElementById("score").innerText = score.toString();
         //////////////////////////////   
         for (let i: number = 0; i < snowballs.length; i++) {
             if (snowballs[i].timer > 0) {
                 snowballs[i].draw();
-                //snowballs[i].checkIfHit(childrenArray[i].x, childrenArray[i].y);
+                
             }
+           
             else {
                 if (snowballs[i].timer == 0) {
                     snowballs[i].draw();
-                    console.log("timer:" + snowballs[i].timer);
+                   // console.log("timer:" + snowballs[i].timer);
                     for (let i2: number = 0; i2 < childsDown.length; i2++) {
-                        console.log("yooo" + ChildDown.length);
+                        console.log(snowballs.length + ChildDown.length);
                         if (snowballs[i].checkIfHit(childsDown[i2].x, childsDown[i2].y) == true && childsDown[i2].state == "ridedown") {
                             childsDown[i2].state = "dead";
                             score += childsDown[i2].getSpeed();
@@ -267,8 +288,8 @@ namespace rodelbahn {
         snowballs.push(ball);
     }
 
-
-    document.getElementById("score").innerText = score.toString();
+    
+  //  document.getElementById("score").innerText = score.toString();
 
 
 }

@@ -23,29 +23,44 @@ namespace rodelbahn {
                 crc2.fill();
                 crc2.stroke();
                 this.timer--;
-                console.log(this.timer);
+               // console.log(this.timer);
             }
         }
         checkIfHit(_x: number, _y: number): boolean {
+            
+           // crc2.strokeStyle = "#E6E6E6";
+           // crc2.fillStyle = "#E6E6E6";
+           // crc2.fill();
+           // crc2.stroke();
+            crc2.lineWidth = 50;
             crc2.beginPath();
-            crc2.arc(this.x + 25, this.y - 50, 10, 0, 2 * Math.PI);
+            crc2.moveTo(_x - 20, _y);
+            crc2.arc(_x + 30, _y - 100, 60, 0, 10 * Math.PI);
+            crc2.closePath();
+            
+            /*
+            crc2.strokeStyle = "#E6E6E6";
+            crc2.fillStyle = "#E6E6E6";
             crc2.fill();
-            crc2.lineWidth = .2;
             crc2.stroke();
-
-
-
-            console.log("bum");
+            crc2.lineWidth = 50;
+            crc2.beginPath();
+            crc2.arc(_x + 25, _y - 50, 10, 0, 2 * Math.PI);
+            crc2.moveTo(_x + 10, _y - 15);
+            crc2.lineTo(_x + 45, _y - 15);
+            crc2.lineTo(_x + 25, _y - 40);
+            crc2.closePath();
+*/
             if (crc2.isPointInPath(this.x, this.y)) {
-                return false;
+                return true;
             }
             else {
-                return true;
+                return false;
             }
         }
     }
     /////////////////////////////////////////////////////////////////////
-    export class baseStats {
+    export class base {
         x: number;
         y: number;
         color: string;
@@ -53,7 +68,7 @@ namespace rodelbahn {
         draw(): void { }
     }
 
-    export class movement extends baseStats {
+    export class movement extends base {
         dx: number;
         dy: number;
         move(): void {
@@ -179,97 +194,4 @@ namespace rodelbahn {
 
     }
 
-    /////////////////////////////////////////////////////////////////////
-    /*
-     export class ChildDown {
-         x: number;
-         y: number;
-         xDir: number;
-         yDir: number;
-         color: string;
-         state: string;
- 
-         draw(): void {
- // DRAW KIDS
-             crc2.beginPath();
-             crc2.arc(this.x + 25, this.y - 50, 10, 0, 2 * Math.PI);
-             crc2.fillStyle = "#000000";
-             crc2.fill();
-             crc2.lineWidth = .2;
-             crc2.strokeStyle = "#A57658";
-             crc2.stroke();
- 
-             crc2.fillStyle = this.color;
-             crc2.beginPath();
-             crc2.moveTo(this.x + 10, this.y - 15);
-             crc2.lineTo(this.x + 45, this.y - 15);
-             crc2.lineTo(this.x + 25, this.y - 40);
- 
- 
-             
-             crc2.fill();
- // DRAW SLATE
-             crc2.beginPath();
-             crc2.moveTo(this.x, this.y);
-             crc2.lineTo(this.x + 55, this.y);
- 
-             crc2.lineWidth = 4;
-             crc2.strokeStyle = "#683737";
-             crc2.stroke();
- 
-             crc2.beginPath();
-             crc2.moveTo(this.x, this.y - 15);
-             crc2.lineTo(this.x + 55, this.y - 15);
- 
-             crc2.lineWidth = 4;
-             crc2.strokeStyle = "#683737";
-             crc2.stroke();
- 
-             crc2.beginPath();
-             crc2.moveTo(this.x + 10, this.y);
-             crc2.lineTo(this.x + 10, this.y - 15);
- 
-             crc2.lineWidth = 4;
-             crc2.strokeStyle = "#683737";
-             crc2.stroke();
- 
-             crc2.beginPath();
-             crc2.moveTo(this.x + 45, this.y);
-             crc2.lineTo(this.x + 45, this.y - 15);
- 
-             crc2.lineWidth = 4;
-             crc2.strokeStyle = "#683737";
-             crc2.stroke();
-            
- 
-         }
-     getSpeed(): number {
-             return Math.floor(this.xDir * this.yDir * -1 * 200);
-         }
-     
-         move(): void {
- 
-             this.yDir = 4;
-             this.xDir = 5;
- 
-             this.x += this.xDir;
-             this.y += this.yDir;
- 
-             if (this.x > 750) {
-                 this.x = -60;
-                 this.y = Math.random() * 250 + 400;
-             }
- 
-         }
- 
-         getRandomColor(): string {
-             var r: string = ("0" + Math.floor(Math.random() * 256).toString(16)).substr(-2);
-             var g: string = ("0" + Math.floor(Math.random() * 256).toString(16)).substr(-2);
-             var b: string = ("0" + Math.floor(Math.random() * 256).toString(16)).substr(-2);
-             return "#" + r + g + b;
-         }
-     
- 
- }
-     */
-}
+    }

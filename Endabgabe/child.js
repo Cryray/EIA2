@@ -15,32 +15,47 @@ var rodelbahn;
                 rodelbahn.crc2.fill();
                 rodelbahn.crc2.stroke();
                 this.timer--;
-                console.log(this.timer);
             }
         }
         checkIfHit(_x, _y) {
+            // crc2.strokeStyle = "#E6E6E6";
+            // crc2.fillStyle = "#E6E6E6";
+            // crc2.fill();
+            // crc2.stroke();
+            rodelbahn.crc2.lineWidth = 50;
             rodelbahn.crc2.beginPath();
-            rodelbahn.crc2.arc(this.x + 25, this.y - 50, 10, 0, 2 * Math.PI);
-            rodelbahn.crc2.fill();
-            rodelbahn.crc2.lineWidth = .2;
-            rodelbahn.crc2.stroke();
-            console.log("bum");
+            rodelbahn.crc2.moveTo(_x - 20, _y);
+            rodelbahn.crc2.arc(_x + 30, _y - 100, 60, 0, 10 * Math.PI);
+            rodelbahn.crc2.closePath();
+            /*
+            crc2.strokeStyle = "#E6E6E6";
+            crc2.fillStyle = "#E6E6E6";
+            crc2.fill();
+            crc2.stroke();
+            crc2.lineWidth = 50;
+            crc2.beginPath();
+            crc2.arc(_x + 25, _y - 50, 10, 0, 2 * Math.PI);
+            crc2.moveTo(_x + 10, _y - 15);
+            crc2.lineTo(_x + 45, _y - 15);
+            crc2.lineTo(_x + 25, _y - 40);
+            crc2.closePath();
+*/
             if (rodelbahn.crc2.isPointInPath(this.x, this.y)) {
-                return false;
+                return true;
             }
             else {
-                return true;
+                return false;
             }
         }
     }
     rodelbahn.snowball = snowball;
     /////////////////////////////////////////////////////////////////////
-    class baseStats {
+    class base {
         move() { }
         draw() { }
     }
-    rodelbahn.baseStats = baseStats;
-    class movement extends baseStats {
+    rodelbahn.base = base;
+    class movement extends base {
         move() {
             this.y += this.dy;
             this.x += this.dx;
