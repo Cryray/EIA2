@@ -296,7 +296,7 @@ function handleChange(_event: Event): void {
         target.setAttribute("value", target.value);
     }
 
-    let address: string = "https://eia2-18.herokuapp.com/";
+    let address: string = "https://githubcryray.herokuapp.com/";
 
     function sendRequestWithCustomData(): void {
         console.log("requestcustom");

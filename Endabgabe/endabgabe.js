@@ -222,7 +222,7 @@ var rodelbahn;
         let target = _event.target;
         target.setAttribute("value", target.value);
     }
-    let address = "https://eia2-18.herokuapp.com/";
+    let address = "https://githubcryray.herokuapp.com/";
     function sendRequestWithCustomData() {
         console.log("requestcustom");
         let xhr = new XMLHttpRequest();
