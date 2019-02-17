@@ -171,11 +171,6 @@ namespace rodelbahn {
             return Math.floor(this.dx * this.dy * -1 * 200);
         }
 
-
-
-
-
-
     }
 
 }

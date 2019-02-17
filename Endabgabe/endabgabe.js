@@ -26,6 +26,27 @@ var rodelbahn;
         document.getElementById("back").addEventListener("click", showMenu);
         document.getElementById("highscoreList").style.display = "none";
     }
+    function showEndscreen() {
+        document.getElementById("finalScore").innerText = score.toString();
+        document.getElementById("finalScore").setAttribute("value", score.toString());
+        document.getElementsByTagName("canvas")[0].style.display = "none";
+        document.getElementById("score").style.display = "none";
+        document.getElementsByTagName("div")[0].style.display = "none";
+        document.getElementById("endscreen").style.display = "initial";
+        document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
+        document.getElementById("sendButton").addEventListener("click", sendRequestWithCustomData);
+    }
+    function highscores() {
+        document.getElementById("finalScore").innerText = score.toString();
+        document.getElementById("finalScore").setAttribute("value", score.toString());
+        console.log(document.getElementById("finalScore"));
+        document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
+        document.getElementsByTagName("canvas")[0].style.display = "none";
+        document.getElementById("score").style.display = "none";
+        document.getElementsByTagName("div")[0].style.display = "none";
+        document.getElementById("highscoreList").style.display = "initial";
+        document.getElementById("highscores").style.display = "initial";
+    }
     function init(_event) {
         score = 0;
         timer = 60;
@@ -50,65 +71,7 @@ var rodelbahn;
         update();
         canvas.addEventListener("click", throwSnowball);
     }
-    function endscreen() {
-        document.getElementById("finalScore").innerText = score.toString();
-        document.getElementById("finalScore").setAttribute("value", score.toString());
-        document.getElementsByTagName("canvas")[0].style.display = "none";
-        document.getElementById("score").style.display = "none";
-        document.getElementsByTagName("div")[0].style.display = "none";
-        document.getElementById("endscreen").style.display = "initial";
-        document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
-        document.getElementById("sendButton").addEventListener("click", sendRequestWithCustomData);
-    }
-    function createChild() {
-        let child = new rodelbahn.ChildDown();
-        child.x = 0;
-        child.y = Math.random() * 1100 + 300;
-        child.dx = (Math.random() + 1) * 3;
-        child.dy = (Math.random() + 1) * 2;
-        child.state = "ridedown";
-        childsDown.push(child);
-    }
-    function update() {
-        rodelbahn.crc2.putImageData(imgData, 0, 0);
-        window.setTimeout(update, 1000 / fps);
-        if (snowballs.length > 25) {
-            console.log("Spiel Ende");
-            endscreen();
-        }
-        for (let i = 0; i < snowflakes.length; i++) {
-            let snowflake = snowflakes[i];
-            snowflake.move();
-            snowflake.draw();
-        }
-        for (let i = 0; i < childsDown.length; i++) {
-            childsDown[i].move();
-            childsDown[i].draw();
-            if (childsDown[i].x < -10 || childsDown[i].y > (rodelbahn.crc2.canvas.height + 10)) {
-                childsDown.splice(i, 1);
-                createChild();
-            }
-        }
-        document.getElementById("score").innerText = score.toString();
-        for (let i = 0; i < snowballs.length; i++) {
-            if (snowballs[i].timer > 0) {
-                snowballs[i].draw();
-            }
-            else {
-                if (snowballs[i].timer == 0) {
-                    snowballs[i].draw();
-                    for (let i2 = 0; i2 < childsDown.length; i2++) {
-                        console.log(snowballs.length + rodelbahn.ChildDown.length);
-                        if (snowballs[i].checkIfHit(childsDown[i2].x, childsDown[i2].y) == true && childsDown[i2].state == "ridedown") {
-                            childsDown[i2].state = "dead";
-                            score += childsDown[i2].getSpeed();
-                            console.log("score:" + score);
-                        }
-                    }
-                }
-            }
-        }
-    }
+    ///////////////////////////////DRAW FUNCTIONS//////////////////////////////////////
     function drawSun() {
         var gradient = rodelbahn.crc2.createRadialGradient(300, 80, 10, 238, 5, 300);
         gradient.addColorStop(0, "#F9DB0B");
@@ -154,13 +117,6 @@ var rodelbahn;
         rodelbahn.crc2.fillStyle = "#FFFFFF";
         rodelbahn.crc2.fill();
     }
-    function gernerateTrees() {
-        for (let i = 0; i < 8; i++) {
-            let x = 40 + Math.random() * 200;
-            let y = 800 + Math.random() * 200;
-            drawTrees(x, y);
-        }
-    }
     function drawTrees(_x, _y) {
         rodelbahn.crc2.beginPath();
         rodelbahn.crc2.moveTo(_x - 10, _y + 70);
@@ -176,6 +132,64 @@ var rodelbahn;
         rodelbahn.crc2.closePath();
         rodelbahn.crc2.fillStyle = "#10610D";
         rodelbahn.crc2.fill();
+    }
+    ////////////////////////////////////UPDATE FUNCTION///////////////////////////////////////////////
+    function update() {
+        rodelbahn.crc2.putImageData(imgData, 0, 0);
+        window.setTimeout(update, 1000 / fps);
+        if (snowballs.length > 25) {
+            console.log("Spiel Ende");
+            showEndscreen();
+        }
+        for (let i = 0; i < snowflakes.length; i++) {
+            let snowflake = snowflakes[i];
+            snowflake.move();
+            snowflake.draw();
+        }
+        for (let i = 0; i < childsDown.length; i++) {
+            childsDown[i].move();
+            childsDown[i].draw();
+            if (childsDown[i].x < -10 || childsDown[i].y > (rodelbahn.crc2.canvas.height + 10)) {
+                childsDown.splice(i, 1);
+                createChild();
+            }
+        }
+        document.getElementById("score").innerText = score.toString();
+        for (let i = 0; i < snowballs.length; i++) {
+            if (snowballs[i].timer > 0) {
+                snowballs[i].draw();
+            }
+            else {
+                if (snowballs[i].timer == 0) {
+                    snowballs[i].draw();
+                    for (let i2 = 0; i2 < childsDown.length; i2++) {
+                        console.log(snowballs.length + rodelbahn.ChildDown.length);
+                        if (snowballs[i].checkIfHit(childsDown[i2].x, childsDown[i2].y) == true && childsDown[i2].state == "ridedown") {
+                            childsDown[i2].state = "dead";
+                            score += childsDown[i2].getSpeed();
+                            console.log("score:" + score);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ///////////////////////////////////////////GENERATE FUNCTIONS//////////////////////////////////////////////////
+    function createChild() {
+        let child = new rodelbahn.ChildDown();
+        child.x = 0;
+        child.y = Math.random() * 1100 + 300;
+        child.dx = (Math.random() + 1) * 3;
+        child.dy = (Math.random() + 1) * 2;
+        child.state = "ridedown";
+        childsDown.push(child);
+    }
+    function gernerateTrees() {
+        for (let i = 0; i < 8; i++) {
+            let x = 40 + Math.random() * 200;
+            let y = 800 + Math.random() * 200;
+            drawTrees(x, y);
+        }
     }
     function gernerateTrees2() {
         for (let i = 0; i < 4; i++) {
@@ -211,6 +225,7 @@ var rodelbahn;
         ball.timer = 25;
         snowballs.push(ball);
     }
+    /////////////////////////////SERVER AND DATABASE FUNCTIONS/////////////////////////////////////////////////
     function handleChange(_event) {
         let target = _event.target;
         target.setAttribute("value", target.value);
@@ -232,17 +247,6 @@ var rodelbahn;
             console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             console.log("response: " + xhr.response);
         }
-    }
-    function highscores() {
-        document.getElementById("finalScore").innerText = score.toString();
-        document.getElementById("finalScore").setAttribute("value", score.toString());
-        console.log(document.getElementById("finalScore"));
-        document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
-        document.getElementsByTagName("canvas")[0].style.display = "none";
-        document.getElementById("score").style.display = "none";
-        document.getElementsByTagName("div")[0].style.display = "none";
-        document.getElementById("highscoreList").style.display = "initial";
-        document.getElementById("highscores").style.display = "initial";
     }
 })(rodelbahn || (rodelbahn = {}));
 //# sourceMappingURL=endabgabe.js.map
