@@ -73,7 +73,7 @@ namespace rodelbahn {
         document.getElementById("endscreen").style.display = "initial";
         document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
 
-        document.getElementById("insert").addEventListener("click", sendRequestWithCustomData);
+        document.getElementById("sendButton").addEventListener("click", sendRequestWithCustomData);
       //  document.getElementById("retry").style.display = "initial";
      //   document.getElementById("retry").addEventListener("click", init);
 
@@ -330,7 +330,7 @@ function handleChange(_event: Event): void {
         document.getElementsByTagName("div")[0].style.display = "none";
         document.getElementById("highscoreList").style.display = "initial";
            document.getElementById("highscores").style.display = "initial";
-        document.getElementById("refresh").addEventListener("click", highscores);
+        document.getElementById("highscoresButton").addEventListener("click", highscores);
         
         
     }

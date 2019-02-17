@@ -6,8 +6,8 @@ var DatabaseClient;
     //let serverAddress: string = "https://<your>.herokuapp.com/";    
     function init(_event) {
         console.log("Init");
-        let insertButton = document.getElementById("button");
-        let refreshButton = document.getElementById("highscores");
+        let insertButton = document.getElementById("sendButton");
+        let refreshButton = document.getElementById("highscoresButton");
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
     }
@@ -54,7 +54,7 @@ var DatabaseClient;
     function handleFindResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let output = document.getElementById("highscores");
+            let output = document.getElementById("highscoresButton");
             let scores = [];
             let dataArray = JSON.parse(xhr.response);
             dataArray.sort(playerDataSort);

@@ -8,8 +8,8 @@ namespace DatabaseClient {
 
     function init(_event: Event): void {
         console.log("Init");
-        let insertButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("button");
-        let refreshButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("highscores");
+        let insertButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("sendButton");
+        let refreshButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("highscoresButton");
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
     }
@@ -63,7 +63,7 @@ namespace DatabaseClient {
     function handleFindResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let output: HTMLElement = document.getElementById("highscores");
+            let output: HTMLElement = document.getElementById("highscoresButton");
             let scores: number[] = [];
             let dataArray: playerData[] = JSON.parse(xhr.response);
             dataArray.sort(playerDataSort);
