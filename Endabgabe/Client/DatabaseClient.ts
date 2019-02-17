@@ -1,4 +1,4 @@
-/*
+
 import * as Mongo from "mongodb";
 
 namespace DatabaseClient {
@@ -81,9 +81,9 @@ namespace DatabaseClient {
         }
     }
 }
-*/
 
 
+/*
  window.addEventListener("load", init);
 
     let serverAddress: string = "https://githubcryray.herokuapp.com/";
@@ -160,3 +160,4 @@ namespace DatabaseClient {
             }
         }
     }
+*/

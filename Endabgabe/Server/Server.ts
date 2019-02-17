@@ -3,7 +3,7 @@
  * Simple server managing between client and database
  * @author: Jirka Dell'Oro-Friedl
  */
-/*
+
 import * as Http from "http";
 import * as Url from "url";
 import * as Database from "./Database";
@@ -64,8 +64,9 @@ function respond(_response: Http.ServerResponse, _text: string): void {
     _response.write(_text);
     _response.end();
 }
-*/
 
+
+/*
 import * as Http from "http";
 import * as Url from "url";
 import * as Database from "./Database";
@@ -129,3 +130,4 @@ function respond(_response: Http.ServerResponse, _text: string): void {
 }
 
 
+*/

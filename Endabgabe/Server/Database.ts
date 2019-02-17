@@ -2,7 +2,7 @@
  * Simple database insertion and query for MongoDB
  * @author: Jirka Dell'Oro-Friedl
  */
-/*
+
 import * as Mongo from "mongodb";
 console.log("Database starting");
 
@@ -75,11 +75,11 @@ export function findAll(_callback: Function): void {
             _callback(JSON.stringify(playerArray));
     }
 }
-*/
 
 
 
 
+/*
 
 import * as Mongo from "mongodb";
 console.log("Database starting");
@@ -155,3 +155,4 @@ export function findAll(_callback: Function): void {
             _callback(JSON.stringify(studentArray));
     }
 }
+*/
