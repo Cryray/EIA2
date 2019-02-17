@@ -18,28 +18,11 @@ var rodelbahn;
             }
         }
         checkIfHit(_x, _y) {
-            // crc2.strokeStyle = "#E6E6E6";
-            // crc2.fillStyle = "#E6E6E6";
-            // crc2.fill();
-            // crc2.stroke();
             rodelbahn.crc2.lineWidth = 50;
             rodelbahn.crc2.beginPath();
             rodelbahn.crc2.moveTo(_x - 20, _y);
             rodelbahn.crc2.arc(_x + 30, _y - 100, 60, 0, 10 * Math.PI);
             rodelbahn.crc2.closePath();
-            /*
-            crc2.strokeStyle = "#E6E6E6";
-            crc2.fillStyle = "#E6E6E6";
-            crc2.fill();
-            crc2.stroke();
-            crc2.lineWidth = 50;
-            crc2.beginPath();
-            crc2.arc(_x + 25, _y - 50, 10, 0, 2 * Math.PI);
-            crc2.moveTo(_x + 10, _y - 15);
-            crc2.lineTo(_x + 45, _y - 15);
-            crc2.lineTo(_x + 25, _y - 40);
-            crc2.closePath();
-*/
             if (rodelbahn.crc2.isPointInPath(this.x, this.y)) {
                 return true;
             }
@@ -49,7 +32,6 @@ var rodelbahn;
         }
     }
     rodelbahn.snowball = snowball;
-    /////////////////////////////////////////////////////////////////////
     class base {
         move() { }
         draw() { }
@@ -62,7 +44,6 @@ var rodelbahn;
         }
     }
     rodelbahn.movement = movement;
-    /////////////////////////////////////////////////////////////////////    
     class ChildDown extends movement {
         draw() {
             if (this.state == "ridedown") {
@@ -112,7 +93,6 @@ var rodelbahn;
             rodelbahn.crc2.lineTo(this.x + 45, this.y - 15);
             rodelbahn.crc2.lineTo(this.x + 25, this.y - 40);
             rodelbahn.crc2.fill();
-            // DRAW SLATE
             rodelbahn.crc2.beginPath();
             rodelbahn.crc2.moveTo(this.x, this.y);
             rodelbahn.crc2.lineTo(this.x + 55, this.y);

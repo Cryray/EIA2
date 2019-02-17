@@ -1,6 +1,6 @@
 namespace rodelbahn {
     window.addEventListener("load", showMenu);
-    // window.addEventListener("load", init)
+   
     export let crc2: CanvasRenderingContext2D;
 
     let snowflakes: Snow[] = [];
@@ -74,12 +74,7 @@ namespace rodelbahn {
         document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
 
         document.getElementById("sendButton").addEventListener("click", sendRequestWithCustomData);
-      //  document.getElementById("retry").style.display = "initial";
-     //   document.getElementById("retry").addEventListener("click", init);
-
-       // document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
-
-      //  document.getElementById("button").addEventListener("click", sendRequestWithCustomData);
+      
     }
 
     function createChild(): void {
@@ -111,7 +106,7 @@ namespace rodelbahn {
 
         
         
-        /////////////////////////////////
+       
         for (let i: number = 0; i < childsDown.length; i++) {
             childsDown[i].move();
             childsDown[i].draw();
@@ -122,7 +117,7 @@ namespace rodelbahn {
             }
         }
         document.getElementById("score").innerText = score.toString();
-        //////////////////////////////   
+           
         for (let i: number = 0; i < snowballs.length; i++) {
             if (snowballs[i].timer > 0) {
                 snowballs[i].draw();
@@ -132,7 +127,6 @@ namespace rodelbahn {
             else {
                 if (snowballs[i].timer == 0) {
                     snowballs[i].draw();
-                   // console.log("timer:" + snowballs[i].timer);
                     for (let i2: number = 0; i2 < childsDown.length; i2++) {
                         console.log(snowballs.length + ChildDown.length);
                         if (snowballs[i].checkIfHit(childsDown[i2].x, childsDown[i2].y) == true && childsDown[i2].state == "ridedown") {
@@ -179,9 +173,7 @@ namespace rodelbahn {
         crc2.closePath();
 
         var grd = crc2.createLinearGradient(0, 0, 700, 1110);
-        // light blue
         grd.addColorStop(0, "#1AD9E4");
-        // dark blue
         grd.addColorStop(1, "#178FDA");
         crc2.fillStyle = grd;
         crc2.fill();
@@ -277,7 +269,6 @@ namespace rodelbahn {
             let childd: ChildDown = new ChildDown();
             childd.x = Math.random() * 1000;
             childd.y = Math.random() * 250 + 400;
-            //childd.color = childd.getRandomColor();
             childd.draw();
 
             childsDown.push(childd);
@@ -322,7 +313,7 @@ function handleChange(_event: Event): void {
         }
     }
     function highscores(): void {
-        //document.getElementById("endscreen").style.display = "none";
+        
         
         document.getElementById("finalScore").innerText = score.toString();
         document.getElementById("finalScore").setAttribute("value", score.toString());
@@ -333,11 +324,11 @@ function handleChange(_event: Event): void {
         document.getElementsByTagName("div")[0].style.display = "none";
         document.getElementById("highscoreList").style.display = "initial";
            document.getElementById("highscores").style.display = "initial";
-    //    document.getElementById("highscoresButton").style.display="initial";
+
         
         
     }
-  //  document.getElementById("score").innerText = score.toString();
+  
 
 
 }

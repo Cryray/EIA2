@@ -59,10 +59,6 @@ var rodelbahn;
         document.getElementById("endscreen").style.display = "initial";
         document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
         document.getElementById("sendButton").addEventListener("click", sendRequestWithCustomData);
-        //  document.getElementById("retry").style.display = "initial";
-        //   document.getElementById("retry").addEventListener("click", init);
-        // document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
-        //  document.getElementById("button").addEventListener("click", sendRequestWithCustomData);
     }
     function createChild() {
         let child = new rodelbahn.ChildDown();
@@ -85,7 +81,6 @@ var rodelbahn;
             snowflake.move();
             snowflake.draw();
         }
-        /////////////////////////////////
         for (let i = 0; i < childsDown.length; i++) {
             childsDown[i].move();
             childsDown[i].draw();
@@ -95,7 +90,6 @@ var rodelbahn;
             }
         }
         document.getElementById("score").innerText = score.toString();
-        //////////////////////////////   
         for (let i = 0; i < snowballs.length; i++) {
             if (snowballs[i].timer > 0) {
                 snowballs[i].draw();
@@ -103,7 +97,6 @@ var rodelbahn;
             else {
                 if (snowballs[i].timer == 0) {
                     snowballs[i].draw();
-                    // console.log("timer:" + snowballs[i].timer);
                     for (let i2 = 0; i2 < childsDown.length; i2++) {
                         console.log(snowballs.length + rodelbahn.ChildDown.length);
                         if (snowballs[i].checkIfHit(childsDown[i2].x, childsDown[i2].y) == true && childsDown[i2].state == "ridedown") {
@@ -138,9 +131,7 @@ var rodelbahn;
         rodelbahn.crc2.lineTo(0, 350);
         rodelbahn.crc2.closePath();
         var grd = rodelbahn.crc2.createLinearGradient(0, 0, 700, 1110);
-        // light blue
         grd.addColorStop(0, "#1AD9E4");
-        // dark blue
         grd.addColorStop(1, "#178FDA");
         rodelbahn.crc2.fillStyle = grd;
         rodelbahn.crc2.fill();
@@ -207,7 +198,6 @@ var rodelbahn;
             let childd = new rodelbahn.ChildDown();
             childd.x = Math.random() * 1000;
             childd.y = Math.random() * 250 + 400;
-            //childd.color = childd.getRandomColor();
             childd.draw();
             childsDown.push(childd);
         }
@@ -244,7 +234,6 @@ var rodelbahn;
         }
     }
     function highscores() {
-        //document.getElementById("endscreen").style.display = "none";
         document.getElementById("finalScore").innerText = score.toString();
         document.getElementById("finalScore").setAttribute("value", score.toString());
         console.log(document.getElementById("finalScore"));
@@ -254,7 +243,6 @@ var rodelbahn;
         document.getElementsByTagName("div")[0].style.display = "none";
         document.getElementById("highscoreList").style.display = "initial";
         document.getElementById("highscores").style.display = "initial";
-        //    document.getElementById("highscoresButton").style.display="initial";
     }
 })(rodelbahn || (rodelbahn = {}));
 //# sourceMappingURL=endabgabe.js.map
