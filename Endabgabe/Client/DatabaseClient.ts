@@ -20,7 +20,7 @@ namespace DatabaseClient {
         let query: string = "command=insert";
         query += "&name=" + inputs[0].value;
         query += "&score=" + document.getElementById("finalScore").getAttribute("value");
-       // console.log(inputs[0].value);
+        // console.log(inputs[0].value);
         sendRequest(query, handleInsertResponse);
         refresh(_event);
     }
@@ -67,14 +67,14 @@ namespace DatabaseClient {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let output: HTMLElement = document.getElementById("highscores");
             let scores: number[] = [];
-            let name: string [] = [];
+            let name: string[] = [];
             let dataArray: playerData[] = JSON.parse(xhr.response);
             dataArray.sort(playerDataSort);
             let helpString: string = "";
             for (let i: number = 0; i < 10; i++) {
                 console.log(dataArray.length);
                 let place: number = 1 + i;
-                helpString += "<h3>" + place + ". " + dataArray[i].name + " | Score:" + dataArray[i].score + "<br>"; 
+                helpString += "<h3>" + place + ". " + dataArray[i].name + " | Score:" + dataArray[i].score + "<br>";
             }
             output.innerHTML = helpString;
 

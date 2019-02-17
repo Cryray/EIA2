@@ -11,55 +11,57 @@
 
 <style>
 .crosshair {
-cursor:crosshair
+	cursor: crosshair
 }
 </style>
 
+
 </head>
+
 <body>
- <canvas class="crosshair" width=700 height=1100></canvas>
- 
- 
- <div id="menu">
- <button id="play">Play Game</button>
- <button id="highscoresButton">Highscores</button>
- <button id="manual">Manual</button>
- </div>
-
-<div id="manualMenu">
-
-<p id="manualText"> You have 25 Snowballs to throw. <br>
-	Each child hit, gives you points. <br>	
-	The faster the child, the more points you get! <br>
-	You can only hit the head! (Yeah it is a feature)
-</p>
-
-<button id="back">Back to Main Menu</button>
-</div>
-	<p id="score"></p>
-<div id="endscreen">
-	<p>Endscore</p>
-	<p id="finalScore"></p>
-	
-	<form>
-<p>Put your Name in here:</p>
-<fieldset>
-<input name="text" id="textInput"></input>
-</fieldset>
-<p id="sendButton">SEND</p>
-	</form>
+	<canvas class="crosshair" width=700 height=1100></canvas>
 
 
+	<div id="menu">
+		<button id="play">Play Game</button>
+		<button id="highscoresButton">Highscores</button>
+		<button id="manual">Manual</button>
 	</div>
-<div id="highscoreList">
-
-<p>Highscores:</p>
-<div id="highscores"></div>
-<div id="finalScore"></div>
 
 
-</div>	
-	
-	
+	<div id="manualMenu">
+		<p id="manualText">
+			You have 25 Snowballs to throw. <br> Each child hit, gives you
+			points. <br> The faster the child, the more points you get! <br>
+			You can only hit the head! (Yeah it is a feature)
+		</p>
+
+		<button id="back">Back to Main Menu</button>
+	</div>
+
+
+	<p id="score"></p>
+
+
+	<div id="endscreen">
+		<p>Endscore</p>
+		<p id="finalScore"></p>
+
+		<form>
+			<p>Put your Name in here:</p>
+			<fieldset>
+				<input name="text" id="textInput"></input>
+			</fieldset>
+			<p id="sendButton">SEND</p>
+		</form>
+	</div>
+
+	<div id="highscoreList">
+		<p>Highscores:</p>
+		<div id="highscores"></div>
+		<div id="finalScore"></div>
+	</div>
+
+
 </body>
 </html>

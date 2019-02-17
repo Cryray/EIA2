@@ -1,6 +1,6 @@
 namespace rodelbahn {
     window.addEventListener("load", showMenu);
-   
+
     export let crc2: CanvasRenderingContext2D;
 
     let snowflakes: Snow[] = [];
@@ -19,21 +19,21 @@ namespace rodelbahn {
         document.getElementById("play").addEventListener("click", init);
         document.getElementById("endscreen").style.display = "none";
         document.getElementById("manual").addEventListener("click", showManual);
-        document.getElementById("score").style.display= "none" ;
+        document.getElementById("score").style.display = "none";
         document.getElementById("manualMenu").style.display = "none";
         document.getElementById("menu").style.display = "initial";
         document.getElementById("highscoresButton").addEventListener("click", highscores);
-        document.getElementById("highscoreList").style.display= "none" ;
+        document.getElementById("highscoreList").style.display = "none";
     }
-    
+
     function showManual() {
         document.getElementById("endscreen").style.display = "none";
-        document.getElementById("score").style.display= "none" ;
+        document.getElementById("score").style.display = "none";
         document.getElementById("menu").style.display = "none";
         document.getElementById("manualMenu").style.display = "initial";
         document.getElementById("back").addEventListener("click", showMenu);
-        document.getElementById("highscoreList").style.display= "none" ;
-        }
+        document.getElementById("highscoreList").style.display = "none";
+    }
     function init(_event: Event): void {
         score = 0;
         timer = 60;
@@ -41,7 +41,7 @@ namespace rodelbahn {
         let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
         document.getElementsByTagName("div")[0].style.display = "none";
         document.getElementById("endscreen").style.display = "none";
-        document.getElementById("highscoreList").style.display= "none" ;
+        document.getElementById("highscoreList").style.display = "none";
         crc2 = canvas.getContext("2d");
 
         drawSky();
@@ -74,7 +74,7 @@ namespace rodelbahn {
         document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
 
         document.getElementById("sendButton").addEventListener("click", sendRequestWithCustomData);
-      
+
     }
 
     function createChild(): void {
@@ -92,7 +92,7 @@ namespace rodelbahn {
         window.setTimeout(update, 1000 / fps);
 
         if (snowballs.length > 25) {
-        console.log("Spiel Ende");
+            console.log("Spiel Ende");
             endscreen()
         }
 
@@ -104,26 +104,26 @@ namespace rodelbahn {
 
         }
 
-        
-        
-       
+
+
+
         for (let i: number = 0; i < childsDown.length; i++) {
             childsDown[i].move();
             childsDown[i].draw();
             if (childsDown[i].x < -10 || childsDown[i].y > (crc2.canvas.height + 10)) {
                 childsDown.splice(i, 1);
                 createChild();
-                
+
             }
         }
         document.getElementById("score").innerText = score.toString();
-           
+
         for (let i: number = 0; i < snowballs.length; i++) {
             if (snowballs[i].timer > 0) {
                 snowballs[i].draw();
-                
+
             }
-           
+
             else {
                 if (snowballs[i].timer == 0) {
                     snowballs[i].draw();
@@ -285,7 +285,7 @@ namespace rodelbahn {
         ball.timer = 25;
         snowballs.push(ball);
     }
-function handleChange(_event: Event): void {
+    function handleChange(_event: Event): void {
         let target: HTMLInputElement = <HTMLInputElement>_event.target;
         target.setAttribute("value", target.value);
     }
@@ -313,22 +313,22 @@ function handleChange(_event: Event): void {
         }
     }
     function highscores(): void {
-        
-        
+
+
         document.getElementById("finalScore").innerText = score.toString();
         document.getElementById("finalScore").setAttribute("value", score.toString());
         console.log(document.getElementById("finalScore"));
-       document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
+        document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
         document.getElementsByTagName("canvas")[0].style.display = "none";
         document.getElementById("score").style.display = "none";
         document.getElementsByTagName("div")[0].style.display = "none";
         document.getElementById("highscoreList").style.display = "initial";
-           document.getElementById("highscores").style.display = "initial";
+        document.getElementById("highscores").style.display = "initial";
 
-        
-        
+
+
     }
-  
+
 
 
 }

@@ -1,8 +1,8 @@
 
- /**
- * Simple server managing between client and database
- * @author: Jirka Dell'Oro-Friedl
- */
+/**
+* Simple server managing between client and database
+* @author: Jirka Dell'Oro-Friedl
+*/
 
 import * as Http from "http";
 import * as Url from "url";
@@ -47,11 +47,11 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
             break;
         default:
             respond(_response, "unknown command: " + command);
-            
+
             break;
     }
 
-    
+
     function findCallback(json: string): void {
         respond(_response, json);
     }
