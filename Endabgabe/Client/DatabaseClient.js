@@ -62,6 +62,7 @@ var DatabaseClient;
             dataArray.sort(playerDataSort);
             let helpString = "";
             for (let i = 0; i < 10; i++) {
+                console.log(dataArray.length);
                 let place = 1 + i;
                 helpString += "<h3>" + place + ". " + dataArray[i].name + " | Score:" + dataArray[i].score + "<br>";
             }
