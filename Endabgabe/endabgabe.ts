@@ -22,7 +22,7 @@ namespace rodelbahn {
         document.getElementById("score").style.display= "none" ;
         document.getElementById("manualMenu").style.display = "none";
         document.getElementById("menu").style.display = "initial";
-        document.getElementById("refresh").addEventListener("click", highscores);
+        document.getElementById("highscoresButton").addEventListener("click", highscores);
         document.getElementById("highscoreList").style.display= "none" ;
     }
     
