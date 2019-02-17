@@ -56,6 +56,7 @@ var DatabaseClient;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let output = document.getElementById("highscoresButton");
             let scores = [];
+            let name = [];
             let dataArray = JSON.parse(xhr.response);
             dataArray.sort(playerDataSort);
             let helpString = "";

@@ -65,6 +65,7 @@ namespace DatabaseClient {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let output: HTMLElement = document.getElementById("highscoresButton");
             let scores: number[] = [];
+            let name: string [] = [];
             let dataArray: playerData[] = JSON.parse(xhr.response);
             dataArray.sort(playerDataSort);
             let helpString: string = "";
