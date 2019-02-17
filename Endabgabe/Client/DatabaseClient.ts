@@ -19,6 +19,7 @@ namespace DatabaseClient {
         let query: string = "command=insert";
         query += "&name=" + inputs[0].value;
         query += "&score=" + document.getElementById("finalScore").getAttribute("value");
+       // console.log(inputs[0].value);
         sendRequest(query, handleInsertResponse);
         refresh(_event);
     }
