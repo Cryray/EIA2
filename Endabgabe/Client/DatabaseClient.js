@@ -1,35 +1,31 @@
+"use strict";
 var DatabaseClient;
 (function (DatabaseClient) {
     window.addEventListener("load", init);
-    // let serverAddress: string = "http://localhost:8100";
     let serverAddress = "https://githubcryray.herokuapp.com/";
+    //let serverAddress: string = "https://<your>.herokuapp.com/";    
     function init(_event) {
         console.log("Init");
-        let insertButton = document.getElementById("insert");
-        let refreshButton = document.getElementById("refresh");
-        let findButton = document.getElementById("find");
+        let insertButton = document.getElementById("button");
+        let refreshButton = document.getElementById("highscores");
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
-        findButton.addEventListener("click", find);
     }
     function insert(_event) {
         let inputs = document.getElementsByTagName("input");
         let query = "command=insert";
         query += "&name=" + inputs[0].value;
         query += "&score=" + document.getElementById("finalScore").getAttribute("value");
-        console.log(query);
         sendRequest(query, handleInsertResponse);
+        refresh(_event);
     }
     function refresh(_event) {
         let query = "command=refresh";
         sendRequest(query, handleFindResponse);
     }
-    function find(_event) {
-        let search = document.getElementById("Suche");
-        let query = "command=find";
-        query += "&matrikel=" + search.value;
-        console.log(query);
-        sendRequest(query, handleFindResponse);
+    function change(_event) {
+        let target = _event.target;
+        target.setAttribute("value", target.value);
     }
     function sendRequest(_query, _callback) {
         let xhr = new XMLHttpRequest();
@@ -40,7 +36,6 @@ var DatabaseClient;
     function handleInsertResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            alert(xhr.response);
         }
     }
     function playerDataSort(_a, _b) {
@@ -60,13 +55,15 @@ var DatabaseClient;
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let output = document.getElementById("highscores");
-            let highscores = [];
+            let scores = [];
             let dataArray = JSON.parse(xhr.response);
             dataArray.sort(playerDataSort);
-            for (let i = 0; i < dataArray.length; i++) {
-                console.log(dataArray[i].name);
-                output.innerHTML += "<p id='showScores'><strong>Name: </strong>" + dataArray[i].name + "<br><strong>Score: </strong>" + dataArray[i].score + "</p>";
+            let helpString = "";
+            for (let i = 0; i < 10; i++) {
+                let place = 1 + i;
+                helpString += "<h3>" + place + ". " + dataArray[i].name + " | Score:" + dataArray[i].score + "<br>";
             }
+            output.innerHTML = helpString;
         }
     }
 })(DatabaseClient || (DatabaseClient = {}));

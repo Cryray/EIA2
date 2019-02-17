@@ -20,6 +20,8 @@ server.listen(port);
 
 
 
+
+
 function handleListen(): void {
     console.log("Listening on port: " + port);
 }
@@ -32,12 +34,11 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
 
     switch (command) {
         case "insert":
-            let student: StudentData = {
+            let player: playerData = {
                 name: query["name"],
-                score: parseInt(query["score"]) 
+                score: parseInt(query["score"]),
             };
-            Database.insert(student);
-            console.log("ya yeet");
+            Database.insert(player);
             respond(_response, "storing data");
             break;
         case "refresh":
