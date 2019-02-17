@@ -41,10 +41,10 @@ var DatabaseClient;
     }
     function playerDataSort(_a, _b) {
         let returnNumber;
-        if (_a.score > _b.score) {
+        if (_b.score > _a.score) {
             returnNumber = -1;
         }
-        else if (_a.score < _b.score) {
+        else if (_b.score < _a.score) {
             returnNumber = 1;
         }
         else {

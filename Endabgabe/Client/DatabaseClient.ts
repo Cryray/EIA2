@@ -49,10 +49,10 @@ namespace DatabaseClient {
 
     function playerDataSort(_a: playerData, _b: playerData): number {
         let returnNumber: number;
-        if (_a.score > _b.score) {
+        if (_b.score > _a.score) {
             returnNumber = -1;
         }
-        else if (_a.score < _b.score) {
+        else if (_b.score < _a.score) {
             returnNumber = 1;
         }
         else {
