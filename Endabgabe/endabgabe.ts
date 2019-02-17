@@ -322,9 +322,12 @@ function handleChange(_event: Event): void {
         }
     }
     function highscores(): void {
-        document.getElementById("endscreen").style.display = "none";
+        //document.getElementById("endscreen").style.display = "none";
+        
         document.getElementById("finalScore").innerText = score.toString();
         document.getElementById("finalScore").setAttribute("value", score.toString());
+        console.log(document.getElementById("finalScore"));
+       document.getElementsByTagName("body")[0].addEventListener("change", handleChange);
         document.getElementsByTagName("canvas")[0].style.display = "none";
         document.getElementById("score").style.display = "none";
         document.getElementsByTagName("div")[0].style.display = "none";
