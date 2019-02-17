@@ -55,7 +55,7 @@ var DatabaseClient;
     function handleFindResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let output = document.getElementById("highscoresButton");
+            let output = document.getElementById("highscores");
             let scores = [];
             let name = [];
             let dataArray = JSON.parse(xhr.response);

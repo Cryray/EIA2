@@ -65,7 +65,7 @@ namespace DatabaseClient {
     function handleFindResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let output: HTMLElement = document.getElementById("highscoresButton");
+            let output: HTMLElement = document.getElementById("highscores");
             let scores: number[] = [];
             let name: string [] = [];
             let dataArray: playerData[] = JSON.parse(xhr.response);

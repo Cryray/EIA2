@@ -254,7 +254,7 @@ var rodelbahn;
         document.getElementsByTagName("div")[0].style.display = "none";
         document.getElementById("highscoreList").style.display = "initial";
         document.getElementById("highscores").style.display = "initial";
-        document.getElementById("highscoresButton").addEventListener("click", highscores);
+        //    document.getElementById("highscoresButton").style.display="initial";
     }
 })(rodelbahn || (rodelbahn = {}));
 //# sourceMappingURL=endabgabe.js.map
