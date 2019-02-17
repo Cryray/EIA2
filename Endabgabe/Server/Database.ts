@@ -44,9 +44,9 @@ export function search(_callback: Function, _matrikel: string): void {
     var cursor: Mongo.Cursor = hs.find();
     cursor.toArray(prepareAnswer);
     function prepareAnswer(_e: Mongo.MongoError, playerArray: playerData[]): void {
-       /* if (_e)
+        if (_e)
             _callback("Error" + _e);
-        else*/
+        else
 
             for (let i: number = 0; i < playerArray.length; i++) {
                 if (playerArray[i].score == Number(_matrikel)) {

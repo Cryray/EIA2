@@ -40,14 +40,14 @@ function search(_callback, _matrikel) {
     var cursor = hs.find();
     cursor.toArray(prepareAnswer);
     function prepareAnswer(_e, playerArray) {
-        /* if (_e)
-             _callback("Error" + _e);
-         else*/
-        for (let i = 0; i < playerArray.length; i++) {
-            if (playerArray[i].score == Number(_matrikel)) {
-                _callback(JSON.stringify(playerArray[i]));
+        if (_e)
+            _callback("Error" + _e);
+        else
+            for (let i = 0; i < playerArray.length; i++) {
+                if (playerArray[i].score == Number(_matrikel)) {
+                    _callback(JSON.stringify(playerArray[i]));
+                }
             }
-        }
     }
 }
 exports.search = search;
