@@ -1,0 +1,123 @@
+#menu {
+	position: absolute;
+	display: block;
+	width: 400px;
+	height: 170px;
+	padding: 5px;
+	border: 1px solid blue;
+	background-color: #ffff99;
+	top: 450px;
+	left: 150px;
+}
+
+#play {
+	position: absolute;
+	display: block;
+	left: 135px;
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 2px 2px;
+	cursor: pointer;
+}
+
+#highscoresButton {
+	position: absolute;
+	display: block;
+	left: 135px;
+	top: 60px;
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 2px 2px;
+	cursor: pointer;
+}
+
+#manual {
+	position: absolute;
+	display: block;
+	left: 140px;
+	top: 120px;
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 2px 2px;
+	cursor: pointer;
+}
+
+#score {
+	padding: 0.25em 0.5em;
+	border: solid 3px #0080ff;
+	margin-top: 0px;
+	margin-left: 0px;
+	width: 200px;
+	text-align: center;
+	width: 200px;
+	background-color: #e6e6e6;
+}
+
+#endscreen {
+	position: absolute;
+	display: block;
+	width: 400px;
+	height: 300px;
+	padding: 5px;
+	border: 1px solid blue;
+	background-color: #ffff99;
+	top: 450px;
+	left: 150px;
+}
+
+#button {
+	background-color: #4CAF50;
+	display: inline-block;
+}
+
+#manualMenu {
+	position: absolute;
+	display: block;
+	width: 400px;
+	height: 250px;
+	padding: 5px;
+	border: 1px solid blue;
+	background-color: #ffff99;
+	top: 450px;
+	left: 150px;
+	font-size: 16px;
+}
+
+#manualText {
+	font-size: 25px;
+}
+
+p {
+	font-size: 25px;
+}
+
+#highscoreList {
+	position: absolute;
+	display: block;
+	width: 400px;
+	height: 480px;
+	padding: 5px;
+	border: 1px solid blue;
+	background-color: #ffff99;
+	top: 450px;
+	left: 150px;
+	font-size: 16px;
+}
