@@ -4,11 +4,11 @@ namespace rodelbahn {
     export let crc2: CanvasRenderingContext2D;
 
     let snowflakes: Snow[] = [];
-    let childsDown: ChildDown[] = [];
+    let birdsDown: BirdDown[] = [];
     let snowballs: snowball[] = [];
     let score: number = 0;
     let timer: number = 60;
-    let körner: food = new food();
+    let corn: food = new food();
 
 
 
@@ -76,16 +76,17 @@ namespace rodelbahn {
 
         drawSky();
         drawSun();
+        drawBirdhouse();
         gernerateTrees();
         gernerateTrees2();
         drawCloud1();
         drawCloud2();
         imgData = crc2.getImageData(0, 0, 700, 1100);
         generateSnow();
-        generateChildDown();
+        generateBirdDown();
 
-        for (let i: number = 0; i < 4; i++) {
-            createChild();
+        for (let i: number = 0; i < 6; i++) {
+            createBird();
         }
 
         update();
@@ -102,23 +103,22 @@ namespace rodelbahn {
             var radius: number = 200;
             if (e.keyCode == 32) {
                 console.log(mouse_x, mouse_y);
-                körner.timer = Math.floor(Math.random() * 100 + 20);
-                körner.x = mouse_x;
-                körner.y = mouse_y;
+                corn.timer = Math.floor(Math.random() * 100 + 20);
+                corn.x = mouse_x;
+                corn.y = mouse_y;
+                
             }
 
             crc2.lineWidth = 50;
             crc2.beginPath();
-            crc2.moveTo(körner.x, körner.y);
-            crc2.arc(körner.x - Math.cos(45), körner.y - Math.sin(45), radius, 0, 2 * Math.PI);
-            crc2.fillStyle = "#D8D8D8";
-            crc2.fill();
+            crc2.moveTo(corn.x, corn.y);
+            crc2.arc(corn.x - Math.cos(45), corn.y - Math.sin(45), radius, 0, 2 * Math.PI);
             crc2.closePath();
 
-            for (var i: number = 0; i < childsDown.length; i++) {
-                let bird: ChildDown = childsDown[i];
+            for (var i: number = 0; i < birdsDown.length; i++) {
+                let bird: BirdDown = birdsDown[i];
                 if (crc2.isPointInPath(bird.x, bird.y)) {
-                    bird.setTarget(körner);
+                    bird.setTarget(corn);
                 }
             }
 
@@ -137,6 +137,46 @@ namespace rodelbahn {
     }
 
     ///////////////////////////////DRAW FUNCTIONS//////////////////////////////////////
+
+    function drawBirdhouse(): void {
+        console.log("Birdhouse");
+
+        //Stamm
+        crc2.beginPath();
+        crc2.moveTo( + 390,  + 800);
+        crc2.lineTo( 400 + 10, 600 + 200);
+        crc2.lineTo( 400 + 10, 600 + 0);
+        crc2.lineTo(400 - 10, 600 + 0);
+        crc2.closePath();
+        crc2.fillStyle = "rosybrown";
+        crc2.fill();
+
+        //Kasten
+        crc2.beginPath();
+        crc2.moveTo( 350, +500);
+        crc2.lineTo( 400 + 50, 600 - 100);
+        crc2.lineTo( 400 + 50, 600 + 0);
+        crc2.lineTo( 400 - 50, 600 + 0);
+        crc2.closePath();
+        crc2.fillStyle = "red";
+        crc2.fill();
+
+        //Dach
+        crc2.beginPath();
+        crc2.moveTo( 400 - 70, 600 - 100);
+        crc2.lineTo( 400 + 0,600 - 150);
+        crc2.lineTo( 400 + 70, 600 - 100);
+        crc2.closePath();
+        crc2.fillStyle = "black";
+        crc2.fill();
+
+        //Eingang
+        let eingangLoch: Path2D = new Path2D;
+
+        eingangLoch.arc( 400 + 0, 600 - 50, 20, 0, 2 * Math.PI);
+        crc2.fillStyle = "black";
+        crc2.fill(eingangLoch);
+    }
 
     function drawSun(): void {
 
@@ -228,11 +268,11 @@ namespace rodelbahn {
     function update(): void {
         crc2.putImageData(imgData, 0, 0);
         window.setTimeout(update, 1000 / fps);
-        if (körner.timer > 0) {
-            körner.draw();
-            if(körner.timer < 1){
-                for(let i: number = 0; i < childsDown.length; i++){
-                    childsDown[i].removeTarget();
+        if (corn.timer > 0) {
+            corn.draw();
+            if(corn.timer < 1){
+                for(let i: number = 0; i < birdsDown.length; i++){
+                    birdsDown[i].removeTarget();
                 }
             }
         }
@@ -253,12 +293,12 @@ namespace rodelbahn {
 
 
 
-        for (let i: number = 0; i < childsDown.length; i++) {
-            childsDown[i].move();
-            childsDown[i].draw();
-            if (childsDown[i].x < -10 || childsDown[i].y > (crc2.canvas.height + 10)) {
-                childsDown.splice(i, 1);
-                createChild();
+        for (let i: number = 0; i < birdsDown.length; i++) {
+            birdsDown[i].move();
+            birdsDown[i].draw();
+            if (birdsDown[i].x < -10 || birdsDown[i].y > (crc2.canvas.height + 10)) {
+                birdsDown.splice(i, 1);
+                createBird();
 
             }
         }
@@ -273,11 +313,11 @@ namespace rodelbahn {
             else {
                 if (snowballs[i].timer == 0) {
                     snowballs[i].draw();
-                    for (let i2: number = 0; i2 < childsDown.length; i2++) {
-                        console.log(snowballs.length + ChildDown.length);
-                        if (snowballs[i].checkIfHit(childsDown[i2].x, childsDown[i2].y) == true && childsDown[i2].state == "ridedown") {
-                            childsDown[i2].state = "dead";
-                            score += childsDown[i2].getSpeed();
+                    for (let i2: number = 0; i2 < birdsDown.length; i2++) {
+                        console.log(snowballs.length + BirdDown.length);
+                        if (snowballs[i].checkIfHit(birdsDown[i2].x, birdsDown[i2].y) == true && birdsDown[i2].state == "ridedown") {
+                            birdsDown[i2].state = "dead";
+                            score += birdsDown[i2].getSpeed();
                             console.log("score:" + score);
                         }
                     }
@@ -288,14 +328,14 @@ namespace rodelbahn {
 
 
     ///////////////////////////////////////////GENERATE FUNCTIONS//////////////////////////////////////////////////
-    function createChild(): void {
-        let child: ChildDown = new ChildDown();
-        child.x = 0;
-        child.y = Math.random() * 1100 + 300;
-        child.dx = (Math.random() + 1) * 3;
-        child.dy = (Math.random() + 1) * 2;
-        child.state = "ridedown";
-        childsDown.push(child);
+    function createBird(): void {
+        let bird: BirdDown = new BirdDown();
+        bird.x = 0;
+        bird.y = Math.random() * 1100 + 300;
+        bird.dx = (Math.random() + 1) * 3;
+        bird.dy = (Math.random() + 1) * 2;
+        bird.state = "ridedown";
+        birdsDown.push(bird);
     }
 
 
@@ -337,14 +377,14 @@ namespace rodelbahn {
 
     }
 
-    function generateChildDown(): void {
+    function generateBirdDown(): void {
 
         for (let i: number = 0; i < 6; i++) {
-            let childd: ChildDown = new ChildDown();
-            childd.x = Math.random() * 1000;
-            childd.y = Math.random() * 250 + 400;
-            childd.draw();
-            childsDown.push(childd);
+            let bird: BirdDown = new BirdDown();
+            bird.x = Math.random() * 1000;
+            bird.y = Math.random() * 250 + 400;
+            bird.draw();
+            birdsDown.push(bird);
 
         }
     }

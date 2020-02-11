@@ -2,11 +2,11 @@ var rodelbahn;
 (function (rodelbahn) {
     window.addEventListener("load", showMenu);
     let snowflakes = [];
-    let childsDown = [];
+    let birdsDown = [];
     let snowballs = [];
     let score = 0;
     let timer = 60;
-    let körner = new rodelbahn.food();
+    let corn = new rodelbahn.food();
     let fps = 30;
     let imgData;
     function showMenu() {
@@ -59,15 +59,16 @@ var rodelbahn;
         rodelbahn.crc2 = canvas.getContext("2d");
         drawSky();
         drawSun();
+        drawBirdhouse();
         gernerateTrees();
         gernerateTrees2();
         drawCloud1();
         drawCloud2();
         imgData = rodelbahn.crc2.getImageData(0, 0, 700, 1100);
         generateSnow();
-        generateChildDown();
-        for (let i = 0; i < 4; i++) {
-            createChild();
+        generateBirdDown();
+        for (let i = 0; i < 6; i++) {
+            createBird();
         }
         update();
         var mouse_x;
@@ -81,21 +82,19 @@ var rodelbahn;
             var radius = 200;
             if (e.keyCode == 32) {
                 console.log(mouse_x, mouse_y);
-                körner.timer = Math.floor(Math.random() * 100 + 20);
-                körner.x = mouse_x;
-                körner.y = mouse_y;
+                corn.timer = Math.floor(Math.random() * 100 + 20);
+                corn.x = mouse_x;
+                corn.y = mouse_y;
             }
             rodelbahn.crc2.lineWidth = 50;
             rodelbahn.crc2.beginPath();
-            rodelbahn.crc2.moveTo(körner.x, körner.y);
-            rodelbahn.crc2.arc(körner.x - Math.cos(45), körner.y - Math.sin(45), radius, 0, 2 * Math.PI);
-            rodelbahn.crc2.fillStyle = "#D8D8D8";
-            rodelbahn.crc2.fill();
+            rodelbahn.crc2.moveTo(corn.x, corn.y);
+            rodelbahn.crc2.arc(corn.x - Math.cos(45), corn.y - Math.sin(45), radius, 0, 2 * Math.PI);
             rodelbahn.crc2.closePath();
-            for (var i = 0; i < childsDown.length; i++) {
-                let bird = childsDown[i];
+            for (var i = 0; i < birdsDown.length; i++) {
+                let bird = birdsDown[i];
                 if (rodelbahn.crc2.isPointInPath(bird.x, bird.y)) {
-                    bird.setTarget(körner);
+                    bird.setTarget(corn);
                 }
             }
         }
@@ -104,6 +103,40 @@ var rodelbahn;
         canvas.addEventListener("click", throwSnowball);
     }
     ///////////////////////////////DRAW FUNCTIONS//////////////////////////////////////
+    function drawBirdhouse() {
+        console.log("Birdhouse");
+        //Stamm
+        rodelbahn.crc2.beginPath();
+        rodelbahn.crc2.moveTo(+390, +800);
+        rodelbahn.crc2.lineTo(400 + 10, 600 + 200);
+        rodelbahn.crc2.lineTo(400 + 10, 600 + 0);
+        rodelbahn.crc2.lineTo(400 - 10, 600 + 0);
+        rodelbahn.crc2.closePath();
+        rodelbahn.crc2.fillStyle = "rosybrown";
+        rodelbahn.crc2.fill();
+        //Kasten
+        rodelbahn.crc2.beginPath();
+        rodelbahn.crc2.moveTo(350, +500);
+        rodelbahn.crc2.lineTo(400 + 50, 600 - 100);
+        rodelbahn.crc2.lineTo(400 + 50, 600 + 0);
+        rodelbahn.crc2.lineTo(400 - 50, 600 + 0);
+        rodelbahn.crc2.closePath();
+        rodelbahn.crc2.fillStyle = "red";
+        rodelbahn.crc2.fill();
+        //Dach
+        rodelbahn.crc2.beginPath();
+        rodelbahn.crc2.moveTo(400 - 70, 600 - 100);
+        rodelbahn.crc2.lineTo(400 + 0, 600 - 150);
+        rodelbahn.crc2.lineTo(400 + 70, 600 - 100);
+        rodelbahn.crc2.closePath();
+        rodelbahn.crc2.fillStyle = "black";
+        rodelbahn.crc2.fill();
+        //Eingang
+        let eingangLoch = new Path2D;
+        eingangLoch.arc(400 + 0, 600 - 50, 20, 0, 2 * Math.PI);
+        rodelbahn.crc2.fillStyle = "black";
+        rodelbahn.crc2.fill(eingangLoch);
+    }
     function drawSun() {
         var gradient = rodelbahn.crc2.createRadialGradient(300, 80, 10, 238, 5, 300);
         gradient.addColorStop(0, "#F9DB0B");
@@ -169,11 +202,11 @@ var rodelbahn;
     function update() {
         rodelbahn.crc2.putImageData(imgData, 0, 0);
         window.setTimeout(update, 1000 / fps);
-        if (körner.timer > 0) {
-            körner.draw();
-            if (körner.timer < 1) {
-                for (let i = 0; i < childsDown.length; i++) {
-                    childsDown[i].removeTarget();
+        if (corn.timer > 0) {
+            corn.draw();
+            if (corn.timer < 1) {
+                for (let i = 0; i < birdsDown.length; i++) {
+                    birdsDown[i].removeTarget();
                 }
             }
         }
@@ -187,12 +220,12 @@ var rodelbahn;
             snowflake.move();
             snowflake.draw();
         }
-        for (let i = 0; i < childsDown.length; i++) {
-            childsDown[i].move();
-            childsDown[i].draw();
-            if (childsDown[i].x < -10 || childsDown[i].y > (rodelbahn.crc2.canvas.height + 10)) {
-                childsDown.splice(i, 1);
-                createChild();
+        for (let i = 0; i < birdsDown.length; i++) {
+            birdsDown[i].move();
+            birdsDown[i].draw();
+            if (birdsDown[i].x < -10 || birdsDown[i].y > (rodelbahn.crc2.canvas.height + 10)) {
+                birdsDown.splice(i, 1);
+                createBird();
             }
         }
         document.getElementById("score").innerText = score.toString();
@@ -203,11 +236,11 @@ var rodelbahn;
             else {
                 if (snowballs[i].timer == 0) {
                     snowballs[i].draw();
-                    for (let i2 = 0; i2 < childsDown.length; i2++) {
-                        console.log(snowballs.length + rodelbahn.ChildDown.length);
-                        if (snowballs[i].checkIfHit(childsDown[i2].x, childsDown[i2].y) == true && childsDown[i2].state == "ridedown") {
-                            childsDown[i2].state = "dead";
-                            score += childsDown[i2].getSpeed();
+                    for (let i2 = 0; i2 < birdsDown.length; i2++) {
+                        console.log(snowballs.length + rodelbahn.BirdDown.length);
+                        if (snowballs[i].checkIfHit(birdsDown[i2].x, birdsDown[i2].y) == true && birdsDown[i2].state == "ridedown") {
+                            birdsDown[i2].state = "dead";
+                            score += birdsDown[i2].getSpeed();
                             console.log("score:" + score);
                         }
                     }
@@ -216,14 +249,14 @@ var rodelbahn;
         }
     }
     ///////////////////////////////////////////GENERATE FUNCTIONS//////////////////////////////////////////////////
-    function createChild() {
-        let child = new rodelbahn.ChildDown();
-        child.x = 0;
-        child.y = Math.random() * 1100 + 300;
-        child.dx = (Math.random() + 1) * 3;
-        child.dy = (Math.random() + 1) * 2;
-        child.state = "ridedown";
-        childsDown.push(child);
+    function createBird() {
+        let bird = new rodelbahn.BirdDown();
+        bird.x = 0;
+        bird.y = Math.random() * 1100 + 300;
+        bird.dx = (Math.random() + 1) * 3;
+        bird.dy = (Math.random() + 1) * 2;
+        bird.state = "ridedown";
+        birdsDown.push(bird);
     }
     function gernerateTrees() {
         for (let i = 0; i < 8; i++) {
@@ -248,13 +281,13 @@ var rodelbahn;
             snowflakes.push(snowflake);
         }
     }
-    function generateChildDown() {
+    function generateBirdDown() {
         for (let i = 0; i < 6; i++) {
-            let childd = new rodelbahn.ChildDown();
-            childd.x = Math.random() * 1000;
-            childd.y = Math.random() * 250 + 400;
-            childd.draw();
-            childsDown.push(childd);
+            let bird = new rodelbahn.BirdDown();
+            bird.x = Math.random() * 1000;
+            bird.y = Math.random() * 250 + 400;
+            bird.draw();
+            birdsDown.push(bird);
         }
     }
     function throwSnowball(_event) {
