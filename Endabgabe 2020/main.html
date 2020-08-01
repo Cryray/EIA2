@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <script src="main.js" type="text/javascript" charset="utf-8"> </script>
+    <script src="grafiken.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="900" height="600" style="background-color: aqua;">
+
+    </canvas>
+    <select id="dropdownChooseGraphics">
+        <option value="Rectangle">Rectangle</option>
+        <option value="Circle">Circle</option>
+    </select><br>
+    
+    <select id="dropdownGraphicsMade">Graphics
+    
+
+    </select>
+    <form id="optionForm">
+        <label for="name">Name: </label>
+        <input type="text" id="name" value=""><br>
+        <label for= "width">Breite: </label>
+        <input type ="number" id="width" value=""><br>
+        <label for="heigth">Höhe: </label>
+        <input type="number" id="heigth" value=""><br>
+        <label for="xCoord">X-Position: </label>
+        <input type="number" id="xCoord" value=""><br>
+        <label for="yCoord">Y-Position: </label>
+        <input type="number" id="yCoord" value=""><br><br>
+        <input type="button" id="saveChanges" value="Änderungen speichern"> <br>
+        <input type="button" id="deleteGraphic" value="Grafik löschen">
+    </form>
+</body>
+
+</html>
