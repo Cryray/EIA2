@@ -6,9 +6,27 @@
 </head>
 
 <body>
-    <canvas id="myCanvas" width="900" height="600" style="background-color: aqua;">
+    <canvas id="myCanvas" width="600" height="900" style="background-color: aqua;">
 
     </canvas>
+
+    <form id="canvasForm">
+        <label for="heigthC">Höhe </label>
+        <input type="number" id="heigthC" value="900"><br>
+        <label for= "widthC">Breite: </label>
+        <input type ="number" id="widthC" value="600"><br>
+    
+        <input type="button" id="saveChangesC" value="Änderungen speichern"> <br>
+    </form>
+
+    <select id="dropdownChooseColor">
+        <option value="background-color: red">Red</option>
+        <option value="background-color: yellow">Yellow</option>
+        <option value="background-color: aqua">Aqua</option>
+        <option value="background-color: green">Green</option>
+    </select><br>
+    <input type="button" id="saveChangesColor" value="Änderungen speichern"> <br>
+
     <select id="dropdownChooseGraphics">
         <option value="Rectangle">Rectangle</option>
         <option value="Circle">Circle</option>
@@ -18,6 +36,9 @@
     
 
     </select>
+
+
+
     <form id="optionForm">
         <label for="name">Name: </label>
         <input type="text" id="name" value=""><br>
@@ -31,7 +52,13 @@
         <input type="number" id="yCoord" value=""><br><br>
         <input type="button" id="saveChanges" value="Änderungen speichern"> <br>
         <input type="button" id="deleteGraphic" value="Grafik löschen">
+        <input type="button" id="moveRight" value="->"> <br>
+        <input type="button" id="rave" value="RAVE!!!!!"> <br>
     </form>
+
+    
+
+
 </body>
 
 </html>

@@ -5,43 +5,69 @@ var zauberbild;
     let graphics;
     let dropdownGraphicsMade;
     let dropdownChooseGraphics;
+    let dropdownChooseColor;
     let optionForm;
+    let canvasForm;
     let inputName;
     let inputWidth;
     let inputHeigth;
+    let inputCanvasWidth;
+    let inputCanvasHeigth;
     let inputXCoord;
     let inputYCoord;
     let saveChangesButton;
+    let moveRight;
+    let rave;
+    let saveCanvasChangesButton;
+    let saveColorChangesButton;
     let deleteGraphicButton;
+    let canvasWidth = 0;
+    let canvasHeight = 0;
     window.addEventListener("load", init);
     function init() {
         //get Elements from document and set them
         let canvas = document.getElementById("myCanvas");
         dropdownGraphicsMade = document.getElementById("dropdownGraphicsMade");
         dropdownChooseGraphics = document.getElementById("dropdownChooseGraphics");
+        dropdownChooseColor = document.getElementById("dropdownChooseColor");
         optionForm = document.getElementById("optionForm");
+        canvasForm = document.getElementById("canvasForm");
         inputName = document.getElementById("name");
         inputWidth = document.getElementById("width");
         inputHeigth = document.getElementById("heigth");
+        inputCanvasWidth = document.getElementById("widthC");
+        inputCanvasHeigth = document.getElementById("heigthC");
         inputXCoord = document.getElementById("xCoord");
         inputYCoord = document.getElementById("yCoord");
         saveChangesButton = document.getElementById("saveChanges");
+        saveCanvasChangesButton = document.getElementById("saveChangesC");
+        saveColorChangesButton = document.getElementById("saveChangesColor");
+        moveRight = document.getElementById("moveRight");
+        rave = document.getElementById("rave");
         deleteGraphicButton = document.getElementById("deleteGraphic");
         //set necessary Event listeners
         crc2 = canvas.getContext("2d");
         dropdownGraphicsMade.addEventListener("change", openGraphicOptions);
         saveChangesButton.addEventListener("click", changeGraphicOptions);
+        moveRight.addEventListener("click", moveObjectRight);
+        rave.addEventListener("click", makeRave);
+        saveCanvasChangesButton.addEventListener("click", changeGraphicOptionsCanvas);
+        saveColorChangesButton.addEventListener("click", changeCanvasColor);
         deleteGraphicButton.addEventListener("click", deleteGraphic);
         canvas.addEventListener("click", createGraphic);
         inputName.addEventListener("input", enableSaveChangesButton);
         inputWidth.addEventListener("input", enableSaveChangesButton);
         inputHeigth.addEventListener("input", enableSaveChangesButton);
+        inputCanvasWidth.addEventListener("input", changeCanvasInput);
+        inputCanvasHeigth.addEventListener("input", changeCanvasInput);
         inputXCoord.addEventListener("input", enableSaveChangesButton);
         inputYCoord.addEventListener("input", enableSaveChangesButton);
         //clear inputs
         inputName.value = "";
         inputWidth.value = "";
         inputHeigth.value = "";
+        canvasWidth = Number(inputCanvasWidth.value);
+        canvasHeight = Number(inputCanvasHeigth.value);
         inputXCoord.value = "";
         inputYCoord.value = "";
         //disable Buttons
@@ -104,6 +130,45 @@ var zauberbild;
         graphic.heigth = Number(inputHeigth.value);
         graphic.x = Number(inputXCoord.value);
         graphic.y = Number(inputYCoord.value);
+    }
+    function moveObjectRight() {
+        for (var i = 0; i < 40; i++) {
+            setTimeout(moveObjectRightTimeout, 25 * i);
+        }
+    }
+    function moveObjectRightTimeout() {
+        let graphic = getCurrentSelection();
+        graphic.x = Number(graphic.x + 26);
+    }
+    function makeRave() {
+        for (var i = 0; i < 20; i++) {
+            setTimeout(makeRaveTimeout, 200 * i, i);
+        }
+    }
+    function makeRaveTimeout(i) {
+        let graphic = getCurrentSelection();
+        if (i % 3 == 0) {
+            graphic.color = "red";
+        }
+        else if (i % 3 == 1) {
+            graphic.color = "blue";
+        }
+        else if (i % 3 == 2) {
+            graphic.color = "yellow";
+        }
+    }
+    function changeGraphicOptionsCanvas() {
+        crc2.canvas.width = canvasWidth;
+        crc2.canvas.height = canvasHeight;
+    }
+    function changeCanvasInput() {
+        console.log("hi");
+        canvasWidth = Number(inputCanvasWidth.value);
+        canvasHeight = Number(inputCanvasHeigth.value);
+    }
+    function changeCanvasColor() {
+        crc2.canvas.width = canvasWidth;
+        crc2.canvas.setAttribute("style", dropdownChooseColor.options[dropdownChooseColor.selectedIndex].value);
     }
     function enableSaveChangesButton() {
         saveChangesButton.disabled = false;

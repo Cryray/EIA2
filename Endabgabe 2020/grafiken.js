@@ -59,9 +59,12 @@ var zauberbild;
             super();
         }
         draw(crc2) {
+            crc2.save();
+            // crc2.rotate(0.17);
             crc2.strokeRect(this.x, this.y, this.width * BaseGraphic.standardSize, this.heigth * BaseGraphic.standardSize);
             crc2.fillStyle = this.color;
             crc2.fill();
+            crc2.restore();
         }
     }
     zauberbild.Rectangle = Rectangle;
@@ -70,10 +73,12 @@ var zauberbild;
             super();
         }
         draw(crc2) {
+            // draw your object
             crc2.beginPath();
             crc2.arc(this.x, this.y, this.width * BaseGraphic.standardSize, 0, 2 * Math.PI);
             crc2.fillStyle = this.color;
             crc2.fill();
+            crc2.restore();
         }
     }
     zauberbild.Circle = Circle;
