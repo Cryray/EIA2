@@ -6,8 +6,8 @@ var zauberbild;
     let dropdownGraphicsMade;
     let dropdownChooseGraphics;
     let dropdownChooseColor;
-    let optionForm;
-    let canvasForm;
+    let dropdownChooseFormColor;
+    let dropdownChooseAnimation;
     let inputName;
     let inputWidth;
     let inputHeigth;
@@ -16,8 +16,6 @@ var zauberbild;
     let inputXCoord;
     let inputYCoord;
     let saveChangesButton;
-    let moveRight;
-    let rave;
     let saveCanvasChangesButton;
     let saveColorChangesButton;
     let deleteGraphicButton;
@@ -30,8 +28,8 @@ var zauberbild;
         dropdownGraphicsMade = document.getElementById("dropdownGraphicsMade");
         dropdownChooseGraphics = document.getElementById("dropdownChooseGraphics");
         dropdownChooseColor = document.getElementById("dropdownChooseColor");
-        optionForm = document.getElementById("optionForm");
-        canvasForm = document.getElementById("canvasForm");
+        dropdownChooseFormColor = document.getElementById("dropdownChooseFormColor");
+        dropdownChooseAnimation = document.getElementById("dropdownChooseAnimation");
         inputName = document.getElementById("name");
         inputWidth = document.getElementById("width");
         inputHeigth = document.getElementById("heigth");
@@ -42,26 +40,17 @@ var zauberbild;
         saveChangesButton = document.getElementById("saveChanges");
         saveCanvasChangesButton = document.getElementById("saveChangesC");
         saveColorChangesButton = document.getElementById("saveChangesColor");
-        moveRight = document.getElementById("moveRight");
-        rave = document.getElementById("rave");
         deleteGraphicButton = document.getElementById("deleteGraphic");
         //set necessary Event listeners
         crc2 = canvas.getContext("2d");
         dropdownGraphicsMade.addEventListener("change", openGraphicOptions);
         saveChangesButton.addEventListener("click", changeGraphicOptions);
-        moveRight.addEventListener("click", moveObjectRight);
-        rave.addEventListener("click", makeRave);
         saveCanvasChangesButton.addEventListener("click", changeGraphicOptionsCanvas);
         saveColorChangesButton.addEventListener("click", changeCanvasColor);
         deleteGraphicButton.addEventListener("click", deleteGraphic);
         canvas.addEventListener("click", createGraphic);
-        inputName.addEventListener("input", enableSaveChangesButton);
-        inputWidth.addEventListener("input", enableSaveChangesButton);
-        inputHeigth.addEventListener("input", enableSaveChangesButton);
         inputCanvasWidth.addEventListener("input", changeCanvasInput);
         inputCanvasHeigth.addEventListener("input", changeCanvasInput);
-        inputXCoord.addEventListener("input", enableSaveChangesButton);
-        inputYCoord.addEventListener("input", enableSaveChangesButton);
         //clear inputs
         inputName.value = "";
         inputWidth.value = "";
@@ -71,7 +60,6 @@ var zauberbild;
         inputXCoord.value = "";
         inputYCoord.value = "";
         //disable Buttons
-        saveChangesButton.disabled = true;
         deleteGraphicButton.disabled = true;
         //initialize graphics array
         graphics = [];
@@ -101,13 +89,14 @@ var zauberbild;
         inputName.value = graphic.name;
         inputWidth.value = graphic.width.toString();
         inputHeigth.value = graphic.heigth.toString();
-        inputXCoord.value = graphic.x.toString();
-        inputYCoord.value = graphic.y.toString();
+        inputXCoord.value = _event.pageX.toString();
+        inputYCoord.value = _event.pageY.toString();
+        graphic.animation = "NoAnimation";
     }
     function deleteGraphic() {
         let graphic = getCurrentSelection();
         dropdownGraphicsMade.removeChild(dropdownGraphicsMade.children[dropdownGraphicsMade.selectedIndex]);
-        delete graphics[graphic.id]; //splice/undefined not working, because we use id=index
+        delete graphics[graphic.id]; //splice/undefined not working, because we use id as index
         if (dropdownGraphicsMade.length == 0) {
             deleteGraphicButton.disabled = true;
             return;
@@ -122,40 +111,16 @@ var zauberbild;
         inputYCoord.value = graphic.y.toString();
     }
     function changeGraphicOptions() {
-        saveChangesButton.disabled = true;
         let graphic = getCurrentSelection();
         graphic.name = inputName.value;
         dropdownGraphicsMade.children[dropdownGraphicsMade.selectedIndex].text = graphic.name;
         graphic.width = Number(inputWidth.value);
         graphic.heigth = Number(inputHeigth.value);
+        graphic.animation = dropdownChooseAnimation.options[dropdownChooseAnimation.selectedIndex].value;
         graphic.x = Number(inputXCoord.value);
         graphic.y = Number(inputYCoord.value);
-    }
-    function moveObjectRight() {
-        for (var i = 0; i < 40; i++) {
-            setTimeout(moveObjectRightTimeout, 25 * i);
-        }
-    }
-    function moveObjectRightTimeout() {
-        let graphic = getCurrentSelection();
-        graphic.x = Number(graphic.x + 26);
-    }
-    function makeRave() {
-        for (var i = 0; i < 20; i++) {
-            setTimeout(makeRaveTimeout, 200 * i, i);
-        }
-    }
-    function makeRaveTimeout(i) {
-        let graphic = getCurrentSelection();
-        if (i % 3 == 0) {
-            graphic.color = "red";
-        }
-        else if (i % 3 == 1) {
-            graphic.color = "blue";
-        }
-        else if (i % 3 == 2) {
-            graphic.color = "yellow";
-        }
+        graphic.color = dropdownChooseFormColor.options[dropdownChooseFormColor.selectedIndex].value;
+        console.log(graphic.color);
     }
     function changeGraphicOptionsCanvas() {
         crc2.canvas.width = canvasWidth;
@@ -170,10 +135,10 @@ var zauberbild;
         crc2.canvas.width = canvasWidth;
         crc2.canvas.setAttribute("style", dropdownChooseColor.options[dropdownChooseColor.selectedIndex].value);
     }
-    function enableSaveChangesButton() {
-        saveChangesButton.disabled = false;
-    }
     function getCurrentSelection() {
+        if (dropdownGraphicsMade.selectedIndex == -1) {
+            return null;
+        }
         return graphics[Number(dropdownGraphicsMade.children[dropdownGraphicsMade.selectedIndex].value)];
     }
     function update() {
@@ -181,6 +146,9 @@ var zauberbild;
         graphics.forEach(element => {
             element.draw(crc2);
         });
+        if (getCurrentSelection() != null) {
+            getCurrentSelection().highlight(crc2);
+        }
         window.setTimeout(update, 1000 / fps);
     }
 })(zauberbild || (zauberbild = {}));
